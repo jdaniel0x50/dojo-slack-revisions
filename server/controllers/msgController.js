@@ -183,6 +183,7 @@ module.exports = {
         Message.find({ _channel: channelId }, function (err, messages) {
             // delete each message in messages -- related to the channel id
             messages.forEach(function (msg) {
+                CmntController.destroyFromMessage(msg._id);
                 Message.findByIdAndRemove(msg._id, function (err, item) {
                     if (err) {
                         console.log("There were errors in the attempt to delete the message");

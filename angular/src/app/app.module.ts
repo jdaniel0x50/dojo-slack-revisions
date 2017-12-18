@@ -19,13 +19,12 @@ import { RegistrationComponent } from './log-reg/registration/registration.compo
 import { LoginComponent } from './log-reg/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NewMessageComponent } from './home/new-message/new-message.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
 
 import { TeamService } from './services/team.service';
 import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
-import { Chain } from '@angular/compiler';
-
 
 @NgModule({
   declarations: [
@@ -39,7 +38,8 @@ import { Chain } from '@angular/compiler';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
-    NewMessageComponent
+    NewMessageComponent,
+    CreateTeamComponent
   ],
   imports: [
     BrowserModule,
