@@ -1,4 +1,5 @@
 const UserController = require('../controllers/userController');
+const TeamController = require('../controllers/teamController');
 
 module.exports = function(app){
     app.post('/RegisterUser', function(req, res){
@@ -19,4 +20,21 @@ module.exports = function(app){
     app.get('/LogoutUser', function(req, res){
         UserController.logout(req, res);
     });
+
+    //Team Routes
+    app.post('/api/team/create', function(req, res){
+        TeamController.create(req, res);
+    });
+    app.post('/api/team/adduser', function(req, res){
+        TeamController.addUser(req, res);
+    });
+    app.get('/api/user/teams', function(req, res){
+        TeamController.getUserTeams(req, res);
+    });
+    app.get('/api/team/:id', function (req, res){
+        TeamController.getTeam(req, res);
+    });
+    app.get('/api/team/:id/destroy', function (req, res){
+        TeamController.getTeam(req, res);
+    })
 }

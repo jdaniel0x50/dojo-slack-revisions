@@ -61,8 +61,11 @@ module.exports = {
             });
     },
     getTeam: function(req, res) {
-        Team.findOne({_id: req.body._id},
-        function(err, teamResponse){
+        Team.findOne({_id: req.body._id})
+        .populate('_admin')
+        .populate('channels')
+        .populate('users')
+        .exec(function(err, teamResponse){
             if(err){
                 return res.json({Error: "Could not find team"});
             } else {
@@ -92,5 +95,17 @@ module.exports = {
             }
         });
     },
+    destroyTeam: function(req, res) {
+        Team.findById({_id: req.params.id}, function(err, item){
+            if(err){
+                console.log(err);
+                return res.json(err)
+            } else {
+                TeamController.removeTeamChannels(item._id)
+                item.remove();
+            }
+        })
+    },
     
+
 }
