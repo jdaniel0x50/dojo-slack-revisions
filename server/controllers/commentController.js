@@ -156,7 +156,21 @@ module.exports = {
     },
 
     destroyFromMessage: function (msgId) {
-        // Comment.find({})
+        Comment.find({ _message: msgId }, function (err, comments) {
+            // delete each comment in comments -- related to the message id
+            comments.forEach( function (comment) {
+                Comment.findByIdAndRemove(comment._id, function (err, item) {
+                    if (err) {
+                        console.log("There were errors in the attempt to delete the comment");
+                        console.log(err);
+                    }
+                    else {
+                        // db remove was successful
+                        console.log("successfully removed the comment!");
+                    }
+                });
+            });
+        });
     },
 
     getById: function (req, res) {

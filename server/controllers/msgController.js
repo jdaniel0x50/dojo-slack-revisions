@@ -179,6 +179,24 @@ module.exports = {
         })
     },
 
+    destroyFromChannel: function (channelId) {
+        Message.find({ _channel: channelId }, function (err, messages) {
+            // delete each message in messages -- related to the channel id
+            messages.forEach(function (msg) {
+                Message.findByIdAndRemove(msg._id, function (err, item) {
+                    if (err) {
+                        console.log("There were errors in the attempt to delete the message");
+                        console.log(err);
+                    }
+                    else {
+                        // db remove was successful
+                        console.log("successfully removed the message!");
+                    }
+                });
+            });
+        });
+    },
+
     getById: function (req, res) {
         Message.findById(req.params.id)
             .populate('_author')
