@@ -24,7 +24,11 @@ var ChannelSchema = new mongoose.Schema({
     }],
     users: [{
         type: Schema.Types.ObjectId, ref: 'User',
-    }]
+    }],
+    _team: {
+        type: Schema.Types.ObjectId, ref: 'Team',
+    }
+
 }, { timestamps: true });
 
 
