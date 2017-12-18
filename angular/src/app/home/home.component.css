@@ -1,8 +1,7 @@
 .container-fluid{
     padding: 0;
 }
-.navcomp{
-    flex: 0 1 auto;
+.height{
     height: 100%;
-    overflow-y: auto;
+    min-height: 100%;
 }
