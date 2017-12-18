@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Login and registration styles */
+
+input{
+    padding-left: 5px;
+}
+.left{
+    text-align: right;
+}
+.logregbox{
+    border: 1px lightgrey solid;
+    border-radius: 5px; 
+    padding: 5px
+}
+.focus{
+    border-left: 5px solid #a94442;
+}
+.good{
+    border-left: 5px solid #42A948;
+}
+.error{
+    color: red;
+    font-weight: bold;
+}
+.green{
+    background-color: lightgreen;
+}
+
+/* end of log reg styles*/

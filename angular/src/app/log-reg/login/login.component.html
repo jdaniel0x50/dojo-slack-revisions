@@ -1,0 +1,18 @@
+<form class="ng-untouched ng-pristine ng-invalid" (submit)="onSubmit(); loginForm.reset()" #loginForm='ngForm'>
+  <div class="form-group">
+    <label for="loginEmail">Email:</label>
+    <input type="text" name="loginEmail" required minlength="4" maxlength="20" pattern="([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+"
+      [ngClass]="{'focus': loginEmail.dirty && !loginEmail.valid, 'good': loginEmail.valid}" [(ngModel)]="user.email" #loginEmail='ngModel'
+      class="form-control">
+    <p *ngIf="loginEmail.errors && loginEmail.invalid && loginEmail.dirty" class="error">A valid email address is required</p>
+  </div>
+  <div class="form-group">
+    <label for="loginPassword">Password:</label>
+    <input type="password" name="loginPassword" required minlength="8" maxlength="20" pattern="(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,25}"
+      [ngClass]="{'focus': loginPassword.dirty && !loginPassword.valid, 'good': loginPassword.valid}" [(ngModel)]="user.password"
+      #loginPassword='ngModel' class="form-control">
+    <p *ngIf="loginPassword.errors && loginPassword.invalid && loginPassword.dirty" class="error">Password must be 8 characters long with 1 uppercase, 1 number, and one special character</p>
+  </div>
+  <p class="error">{{error}}</p>
+  <input type="submit" [ngClass]="{'green': loginForm.valid}" class="form-control" [disabled]="loginForm.invalid">
+</form>

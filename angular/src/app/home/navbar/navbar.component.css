@@ -1,0 +1,11 @@
+.navside{
+    padding-left: 20px;
+    background-color: #4d394b;
+    flex: 0 1 auto;
+}
+h1,h2,h3,h4,h5,p{
+    color: white
+}
+.channel h5, button{
+    display: inline-block;
+}
