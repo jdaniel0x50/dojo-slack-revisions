@@ -8,8 +8,10 @@ module.exports = {
     create: function (req, res) {
         console.log('===INSIDE TEAM CREATE CONTROLLER===')
         //Create team by first finding logged in user to set as admin
-        User.findOne({ _id: req.session.id }, 
+        console.log("SESSION", req.session.userId);
+        User.findOne({ _id: req.session.userId }, 
             function (errors, userQuery){
+                console.log("USER", userQuery)
                 if(errors || userQuery == null){
                     return res.json({ Error: 'Need to be logged in to create a team' })
                 }
@@ -17,6 +19,7 @@ module.exports = {
                 name: req.body.name,
                 _admin: userQuery._id
             });
+            console.log("NEW TEAM", newTeam.name)
             newTeam.save(function (err) {
                 if (err) {
                     return res.json({Error: 'Team could not be saved'})
@@ -50,7 +53,7 @@ module.exports = {
     },
     getUserTeams: function(req, res) {
         console.log("===INSIDE getUserTeams TEAM CONTROLLER===")
-        User.findOne({_id: req.session.id}, 
+        User.findOne({_id: req.session.userId}, 
             function(err, userResponse){
                 if(err){ 
                     return res.json({Error: "Could not find User Session"})

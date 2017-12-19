@@ -13,10 +13,10 @@ module.exports = {
         function(err, team){
             let newChannel = new Channel({
                 name: req.body.name,
-                _created_by: req.session.id,
+                _created_by: req.session.userId,
                 _team: team._id
             });
-            newChannel.users.push(req.session.id);
+            newChannel.users.push(req.session.userId);
             newChannel.save(function (err){
                 if(err){
                     return res.json({Error: "Could not create new channel"})

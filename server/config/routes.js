@@ -1,7 +1,6 @@
 const UserController = require('../controllers/userController');
 const TeamController = require('../controllers/teamController');
-const ChannelController = require('../controllers/teamController');
-const ChanelController = require('../controllers/chanelController');
+const ChannelController = require('../controllers/channelController');
 const MsgController = require('../controllers/msgController');
 const CommentController = require('../controllers/commentController');
 
