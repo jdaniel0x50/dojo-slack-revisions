@@ -34,6 +34,7 @@ export class Team {
 
 export class Channel {
     constructor(
+        public _id: String = "",
         public name: String = "",
         public purpose: String = "",
         public _team: String = "",
@@ -48,6 +49,7 @@ export class Channel {
 
 export class Message {
     constructor(
+        public _id: String = "",
         public content: String = "",
         public content_type: String = "",
         public _author: String = "",
@@ -60,6 +62,7 @@ export class Message {
 
 export class Comment {
     constructor(
+        public _id: String = "",
         public content: String = "",
         public content_type: String = "",
         public _author: String = "",

@@ -1,9 +1,21 @@
-<div>
-  <form>
-    <div class="input-group">
-      <div class="input-group-addon">+</div>
-      <input type="text" class="form-control" placeholder="new message">
-      <div class="input-group-addon">@</div>
+<form class="" name="createMsg" #createMsg="ngForm">
+  <div class="input-group">
+    <div class="input-group-addon">+</div>
+    <input type="text" class="form-control" placeholder="Message"
+      name="content"
+      minlength="2"
+      maxlength="500"
+      required
+      [(ngModel)]="msg.content"
+      #content="ngModel">
+    <div class="input-group-addon checkColor">
+      <button (click)="onSubmit(); createMsg.reset()" [disabled]="createMsg.invalid" class="btn-transparent">&#10004;</button>
     </div>
-  </form>
-</div>
+    <div class="input-group-addon">@</div>
+  </div>
+  <div class="row text-danger">
+    <!-- <small class="col-md-12" *ngIf="content.errors?.required && content.touched">Content is required.</small> -->
+    <small class="col-md-12" *ngIf="content.errors?.minlength && content.touched">Content must have at least 2 characters.</small>
+    <small class="col-md-12" *ngIf="content.errors?.maxlength && content.touched">Content may have no more than 500 characters.</small>
+  </div>
+</form>
