@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Team = mongoose.model('Team');
 const Channel = mongoose.model('Channel');
+const ChannelController = require('../controllers/channelController');
 
 module.exports = {
     create: function (req, res) {
@@ -101,7 +102,7 @@ module.exports = {
                 console.log(err);
                 return res.json(err)
             } else {
-                TeamController.removeTeamChannels(item._id)
+                ChannelController.removeTeamChannels(item._id)
                 item.remove();
             }
         })

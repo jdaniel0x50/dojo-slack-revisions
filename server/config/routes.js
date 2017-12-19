@@ -1,5 +1,6 @@
 const UserController = require('../controllers/userController');
 const TeamController = require('../controllers/teamController');
+const ChannelController = require('../controllers/teamController');
 
 module.exports = function(app){
     app.post('/RegisterUser', function(req, res){
@@ -36,5 +37,22 @@ module.exports = function(app){
     });
     app.get('/api/team/:id/destroy', function (req, res){
         TeamController.getTeam(req, res);
+    })
+
+    //Channel Routes
+    app.post('/api/channel/create', function(req, res){
+        ChannelController.create(req, res);
+    });
+    app.get('/api/channel/:id', function(req, res){
+        ChannelController.getChannel(req, res);
+    });
+    app.post('/api/channel/updatepurpose', function (req, res){
+        ChannelController.updatePurpose(req, res);
+    });
+    app.post('/api/channel/updatename', function (req, res){
+        ChannelController.updateName(req, res);
+    });
+    app.get('/api/channel/:id/destroy', function (req, res){
+        ChannelController.destroyChannel(req, res);
     })
 }
