@@ -11,6 +11,7 @@ import { CommentComponent } from './home/comment/comment.component';
 import { HomeComponent } from './home/home.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { CreateChannelComponent } from './home/create-channel/create-channel.component';
+import { JoinComponent } from './join/join.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
     path: 'newChannel',
     pathMatch: 'full',
     component: CreateChannelComponent
+  },
+  {
+    path: 'join',
+    pathMatch: 'full',
+    component: JoinComponent
   }
 ];
 

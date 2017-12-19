@@ -85,7 +85,7 @@ module.exports = {
             }
             else {
                 // confirm the author is the logged in user before deleting
-                if (item._author == req.session.id) {
+                if (item._author == req.session.userId) {
                     Comment.findByIdAndUpdate(req.params.id, {
                         content: req.body.content,
                         _author: req.body._author,
@@ -122,7 +122,7 @@ module.exports = {
             }
             else {
                 // confirm the author is the logged in user before deleting
-                if (item._author == req.session.id) {
+                if (item._author == req.session.userId) {
                     Message.findByIdAndUpdate(item._message, {
                         $pull: { comments: req.params.id }
                     }, function (errMessage, msg) {

@@ -26,6 +26,7 @@ import { TeamService } from './services/team.service';
 import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
+import { JoinComponent } from './join/join.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CommentService } from './services/comment.service';
     HomeComponent,
     NewMessageComponent,
     CreateTeamComponent,
-    CreateChannelComponent
+    CreateChannelComponent,
+    JoinComponent
   ],
   imports: [
     BrowserModule,
