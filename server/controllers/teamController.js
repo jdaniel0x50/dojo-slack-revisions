@@ -34,7 +34,7 @@ module.exports = {
                         _team: team._id
                     });
                     defaultChannel.users.push(userQuery._id)
-                    defaultChannel.save(function (err){
+                    defaultChannel.save(function (err, channel){
                         if (err) {
                             return res.json({Error: "General Channel could not be created"})
                         } else {
@@ -42,7 +42,7 @@ module.exports = {
                             {
                                 $addToSet: {
                                     users: req.session.userId, 
-                                    channels: defaultChannel._id
+                                    channels: channel._id
                                 }
                             }, 
                             function (teamErr, teamRes) {
