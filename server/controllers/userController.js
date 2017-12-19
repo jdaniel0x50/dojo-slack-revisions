@@ -15,14 +15,15 @@ module.exports = {
             email: req.body.email,
             password: req.body.password
         });
-        newUser.save(function (newUserErrors) {
+        newUser.save(function (newUserErrors, user) {
             if (newUserErrors) {
                 console.log('===ERRORS SAVING NEW USER===')
                 console.log(newUserErrors)
                 return res.json({ Error: 'User could not be saved' })
             } else {
                 console.log('===SUCCESSFULLY SAVED USER===')
-                req.session.id = newUser._id
+                console.log(user)
+                req.session.userId = user._id
                 let response = {
                     _id: newUser._id,
                     first_name: newUser.first_name,
@@ -52,6 +53,8 @@ module.exports = {
                         email: queryResponse.email,
                         loggedIn: true
                     }
+                    req.session.userId = queryResponse._id
+                    console.log("SESSION ID: ", req.session.userId)
                     return res.json(response)
                 } else {
                     console.log('===FAILED COMPARING PASSWORDS===')
@@ -62,8 +65,8 @@ module.exports = {
     },
     read: function (req, res) {
         console.log('===INSIDE USER READ CONTROLLER===')
-        console.log('SESSION:', req.session.id)
-        if (req.session.id) {
+        console.log('SESSION:', req.session.userId)
+        if (req.session.userId) {
             User.findOne({ _id: req.body._id }, function (errors, queryResponse) {
                 if (errors || queryResponse == null) {
                     console.log('===ERROR FINDING USER===')
@@ -85,8 +88,8 @@ module.exports = {
     },
     update: function (req, res) {
         console.log('===INSIDE USER UPDATE CONTROLLER===')
-        console.log('SESSION:', req.session.id)
-        if (req.session.id) {
+        console.log('SESSION:', req.session.userId)
+        if (req.session.userId) {
             User.findOneAndUpdate({ _id: req.body._id },
                 {
                     first_name: req.body.first_name,
@@ -114,8 +117,8 @@ module.exports = {
     },
     destroy: function (req, res) {
         console.log('===INSIDE USER DESTROY CONTROLLER===')
-        console.log('SESSION:', req.session.id)
-        if (req.session.id) {
+        console.log('SESSION:', req.session.userId)
+        if (req.session.userId) {
             User.remove({ _id: req.body._id }, function (errors) {
                 if (errors) {
                     console.log('===ERROR DESTROYING USER===')
@@ -129,8 +132,8 @@ module.exports = {
     },
     logout: function (req, res) {
         console.log('===INSIDE USER LOGOUT CONTROLLER===')
-        console.log('SESSION:', req.session.id)
-        if (req.session.id) {
+        console.log('SESSION:', req.session.userId)
+        if (req.session.userId) {
             req.session.destroy();
         } else {
             console.log('===USER NOT IN SESSION===')
