@@ -27,7 +27,7 @@ module.exports = {
     },
 
     create: function (req, res) {
-        User.findOne({ _id: req.body._author }, function (err, user) {
+        User.findOne({ _id: req.session.userId }, function (err, user) {
             // find the user that authored the message
             // allows ability to push the message to the user
             if (err) {
@@ -52,7 +52,7 @@ module.exports = {
                                 var item = new Message({
                                     content: req.body.content,
                                     content_type: req.body.content_type,
-                                    _author: req.body._author,
+                                    _author: req.session.userId,
                                     _channel: req.body._channel,
                                 });
                                 item.save(function (errItem, result) {
