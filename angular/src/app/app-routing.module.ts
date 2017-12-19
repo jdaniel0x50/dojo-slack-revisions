@@ -9,6 +9,8 @@ import { SearchbarComponent } from './home/searchbar/searchbar.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { CommentComponent } from './home/comment/comment.component';
 import { HomeComponent } from './home/home.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
+import { CreateChannelComponent } from './home/create-channel/create-channel.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,20 @@ const routes: Routes = [
   {
     path: 'messages',
     component: HomeComponent,
-    children:[]
+    children:[
+      {path: 'profile', pathMatch: 'full', component: ProfileComponent},
+      {path: 'comment', pathMatch: 'full', component: CommentComponent},
+    ]
+  },
+  {
+    path: 'newTeam',
+    pathMatch: 'full',
+    component: CreateTeamComponent
+  },
+  {
+    path: 'newChannel',
+    pathMatch: 'full',
+    component: CreateChannelComponent
   }
 ];
 

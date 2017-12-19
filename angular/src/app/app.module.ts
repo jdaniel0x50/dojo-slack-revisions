@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { UserService } from './user.service';
+import { UserService } from './services/user.service';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
