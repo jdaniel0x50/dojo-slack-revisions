@@ -27,6 +27,7 @@ import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
 import { JoinComponent } from './join/join.component';
+import { TeamSearchComponent } from './join/team-search/team-search.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { JoinComponent } from './join/join.component';
     NewMessageComponent,
     CreateTeamComponent,
     CreateChannelComponent,
-    JoinComponent
+    JoinComponent,
+    TeamSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -39,7 +39,7 @@ module.exports = {
         console.log('req.body:', req.body)
         User.findOne({ email: req.body.email }, function (errors, queryResponse) {
             console.log('QueryResponse:', queryResponse)
-            if (errors || queryResponse == null) {
+            if (errors || queryResponse == null) {d
                 console.log('===ERROR FINDING USER===')
                 return res.json({ Error: 'Password or email does not match' })
             } else {
