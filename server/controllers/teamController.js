@@ -81,7 +81,10 @@ module.exports = {
             });
     },
     getTeam: function(req, res) {
-        Team.findOne({_id: req.body._id})
+        console.log('===INSIDE GETTEAM===')
+        console.log('req.body:',req.body)
+        console.log('req.params:', req.params)
+        Team.findOne({_id: req.params.id})
         .populate('_admin')
         .populate('channels')
         .populate('users')

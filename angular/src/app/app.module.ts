@@ -2,11 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-
-import { UserService } from './services/user.service';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
@@ -21,12 +18,16 @@ import { HomeComponent } from './home/home.component';
 import { NewMessageComponent } from './home/new-message/new-message.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { CreateChannelComponent } from './home/create-channel/create-channel.component';
+import { ResultsComponent } from './home/results/results.component';
+import { JoinComponent } from './join/join.component';
 
+import { UserService } from './services/user.service';
 import { TeamService } from './services/team.service';
 import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
-import { JoinComponent } from './join/join.component';
+import { SearchResultsService } from './services/search-results.service'
+
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { JoinComponent } from './join/join.component';
     NewMessageComponent,
     CreateTeamComponent,
     CreateChannelComponent,
-    JoinComponent
+    JoinComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { JoinComponent } from './join/join.component';
     TeamService,
     ChannelService,
     MessageService,
-    CommentService
+    CommentService,
+    SearchResultsService
   ],
   bootstrap: [AppComponent]
 })

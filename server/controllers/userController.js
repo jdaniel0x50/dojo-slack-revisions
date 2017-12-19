@@ -64,21 +64,16 @@ module.exports = {
         });
     },
     read: function (req, res) {
-        console.log('===INSIDE USER READ CONTROLLER===')
-        console.log('SESSION:', req.session.userId)
+        console.log('===INSIDE USER FIND USER CONTROLLER===')
+        console.log('POST DATA:', req.body)
         if (req.session.userId) {
-            User.findOne({ _id: req.body._id }, function (errors, queryResponse) {
+            User.find({$or: [{first_name: req.body.input}, {last_name: req.body.input}]}, function (errors, queryResponse) {
                 if (errors || queryResponse == null) {
                     console.log('===ERROR FINDING USER===')
                     return res.json({ Error: 'Error finding user' })
                 } else {
-                    let response = {
-                        _id: queryResponse._id,
-                        first_name: queryResponse.first_name,
-                        last_name: queryResponse.last_name,
-                        email: queryResponse.email
-                    }
-                    return res.json(response)
+                    console.log('User search results:', queryResponse)
+                    return res.json(queryResponse)
                 }
             });
         } else {

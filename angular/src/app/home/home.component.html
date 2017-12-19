@@ -1,15 +1,16 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2 col-sm-2">
+    <div class="col-md-2 col-sm-2 navbar">
       <app-navbar (ProfileEmitter)='visibleClicked()'></app-navbar>
     </div>
     <div class="col-md-10 col-sm-10">
       <div class="row">
-        <app-searchbar></app-searchbar>
+        <app-searchbar (SearchResultEmitter)='visibleClicked()'></app-searchbar>
       </div>
       <div class="row">
         <div [ngClass]="{'col-md-9 col-sm-9': isVisible}" [ngClass]="{'col-md-12 col-sm-12': !isVisible}">
           <div class="row">
+            {{currentTeam.channels | json}}
             <app-messageboard></app-messageboard>
           </div>
           <div class="row">
