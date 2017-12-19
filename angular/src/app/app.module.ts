@@ -20,6 +20,7 @@ import { LoginComponent } from './log-reg/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NewMessageComponent } from './home/new-message/new-message.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
+import { CreateChannelComponent } from './home/create-channel/create-channel.component';
 
 import { TeamService } from './services/team.service';
 import { ChannelService } from './services/channel.service';
@@ -39,7 +40,8 @@ import { CommentService } from './services/comment.service';
     LoginComponent,
     HomeComponent,
     NewMessageComponent,
-    CreateTeamComponent
+    CreateTeamComponent,
+    CreateChannelComponent
   ],
   imports: [
     BrowserModule,
