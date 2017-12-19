@@ -106,7 +106,7 @@ module.exports = {
             }
             else {
                 // confirm the author is the logged in user before updating
-                if (item._author == req.session.id) {
+                if (item._author == req.session.userId) {
                     Messasge.findByIdAndUpdate(req.params.id, {
                         content: req.body.content,
                         content_type: req.body.content_type,
@@ -144,7 +144,7 @@ module.exports = {
             }
             else {
                 // confirm the author is the logged in user before deleting
-                if (item._author == req.session.id) {
+                if (item._author == req.session.userId) {
                     Channel.findByIdAndUpdate(item._channel, {
                         $pull: { messages: req.params.id }
                     }, function (errChannel, channel) {
