@@ -26,8 +26,17 @@ module.exports = {
                 } else {
                     console.log("User to create team", userQuery);
                     console.log("TeamID to add:", team._id)
-                    userQuery.teams.push(team._id)
-                    userQuery.save();
+                    User.update({_id: req.session.userId},
+                    {
+                        $addToSet: {teams: team._id}
+                    },
+                    function (err, user){
+                        if(err){
+                            console.log("Update error", err)
+                        } else {
+                            console.log("Updated User", user)
+                        }
+                    });
                     let defaultChannel = new Channel({
                         name: "General",
                         created_by: userQuery._id,
