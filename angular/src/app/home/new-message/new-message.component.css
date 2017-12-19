@@ -1,0 +1,6 @@
+input{
+    display: inline-block
+}
+.line{
+    border-bottom: 1px black solid;
+}

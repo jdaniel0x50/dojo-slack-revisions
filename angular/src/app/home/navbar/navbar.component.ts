@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ChannelService } from '../../services/channel.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  @Output() ProfileEmitter = new EventEmitter();
+  constructor(private _ChannelSerivce: ChannelService) { }
 
   ngOnInit() {
   }
 
+  profileClicked(){
+    this.ProfileEmitter.emit();
+    console.log('Emitting')
+  }
 }

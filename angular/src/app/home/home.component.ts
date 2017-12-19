@@ -9,5 +9,14 @@ export class HomeComponent implements OnInit {
   constructor() { }
   ngOnInit() {
   }
+  isVisible = false;
 
+  visibleClicked(){
+    if(this.isVisible){ 
+      this.isVisible = false
+    }
+    else {
+      this.isVisible = true
+    }
+  }
 }
