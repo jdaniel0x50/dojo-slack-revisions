@@ -36,6 +36,7 @@ export class Channel {
     constructor(
         public name: String = "",
         public purpose: String = "",
+        public _team: String = "",
         public _created_by: String = "",
         public messages: Array<String> = [],
         public highlights: Array<String> = [],

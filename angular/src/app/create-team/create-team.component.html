@@ -1,3 +1,29 @@
-<p>
-  create-team works!
-</p>
+<div class="row col-md-12 mx-auto">
+  <h2 class="mb-3">Create a New Workspace (Team)</h2>
+  <div class="row col-md-12 mx-auto itemBox">
+    <form (submit)="onSubmit(); createTeam.reset()" class="row form col-md-12 mx-0 px-0" name="createTeam" #createTeam="ngForm">
+      <div class="row col-md-12 form-group">
+        <label for="name" class="col-form-label col-md-2 m-0">
+          <small>*Team or Workspace Name</small>
+        </label>
+        <input name="name" type="text" tabindex="1"
+          class="form-control col-md-9" 
+          placeholder="Team Name ..." 
+          minlength="2" 
+          maxlength="255"
+          required 
+          [(ngModel)]="team.name" 
+          #name="ngModel">
+        <div class="row text-danger">
+          <small class="col-md-12" *ngIf="name.errors?.required && name.touched">Name is required.</small>
+          <small class="col-md-12" *ngIf="name.errors?.minlength && name.touched">Name must have at least 2 characters.</small>
+          <small class="col-md-12" *ngIf="name.errors?.maxlength && name.touched">Name may have no more than 255 characters.</small>
+        </div>
+      </div>
+      <div class="row col-md-12 form-group text-right">
+        <input type="reset" tabindex="2" class="col-md-2 form-control mx-4 btn btn-info" value="Cancel">
+        <input type="submit" tabindex="3" class="col-md-2 form-control btn btn-secondary" value="Add Team" [disabled]="createTeam.invalid">
+      </div>
+    </form>
+  </div>
+</div>

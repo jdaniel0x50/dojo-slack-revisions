@@ -1,15 +1,21 @@
 <div class="container-fluid">
-  <div class="row height">
-    <div class="col-md-2 col-sm-2 height">
+  <div class="row">
+    <div class="col-md-2 col-sm-2">
       <app-navbar></app-navbar>
     </div>
-    <div class="col-md-9 col-sm-9 height">
+    <div class="col-md-7 col-sm-7">
+      <div class="row">
+        <app-searchbar></app-searchbar>
+      </div>
       <div class="row">
         <app-messageboard></app-messageboard>
       </div>
       <div class="row">
         <app-new-message></app-new-message>
       </div>
+    </div>
+    <div class="col-md-3 col-sm-3 resultsbar">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
