@@ -26,7 +26,6 @@ import { TeamService } from './services/team.service';
 import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
-import { JoinComponent } from './join/join.component';
 import { TeamSearchComponent } from './join/team-search/team-search.component';
 import { SearchResultsService } from './services/search-results.service';
 
