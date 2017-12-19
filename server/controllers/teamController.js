@@ -20,17 +20,21 @@ module.exports = {
                 _admin: userQuery._id
             });
             console.log("NEW TEAM", newTeam.name)
-            newTeam.save(function (err) {
+            newTeam.save(function (err, team) {
                 if (err) {
                     return res.json({Error: 'Team could not be saved'})
                 } else {
-                    userQuery.teams.push(newTeam._id)
+                    console.log("User to create team", userQuery);
+                    console.log("TeamID to add:", team._id)
+                    userQuery.teams.push(team._id)
+                    userQuery.save();
                     let defaultChannel = new Channel({
                         name: "General",
                         created_by: userQuery._id,
+                        _team: team._id
                     });
                     defaultChannel.users.push(userQuery._id)
-                    defaultChannel.save(function (err){
+                    defaultChannel.save(function (err, channel){
                         if (err) {
                             return res.json({Error: "General Channel could not be created"})
                         } else {
@@ -38,7 +42,7 @@ module.exports = {
                             {
                                 $addToSet: {
                                     users: req.session.userId, 
-                                    channels: defaultChannel._id
+                                    channels: channel._id
                                 }
                             }, 
                             function (teamErr, teamRes) {
