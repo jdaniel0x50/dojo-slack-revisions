@@ -6,7 +6,7 @@
   <div class="col-sm-9 navside child">
     <div class="row">
       <h4>Current Team</h4>
-      <a [routerLink]="['profile']">User name</a>
+      <a (click)='profileClicked()' [routerLink]="['profile']">User name</a>
     </div>
     <div class="row channel">
       <h5>Channels</h5>

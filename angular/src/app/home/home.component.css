@@ -1,5 +1,6 @@
 .container-fluid{
-    padding: 0;
+    padding-left: 0;
+    padding-right: 3em;
 }
 .height{
     height: 100%;

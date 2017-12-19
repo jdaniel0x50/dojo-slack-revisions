@@ -1,21 +1,30 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2 col-sm-2">
-      <app-navbar></app-navbar>
+      <app-navbar (ProfileEmitter)='visibleClicked()'></app-navbar>
     </div>
-    <div class="col-md-7 col-sm-7">
+    <div class="col-md-10 col-sm-10">
       <div class="row">
         <app-searchbar></app-searchbar>
       </div>
       <div class="row">
-        <app-messageboard></app-messageboard>
+        <div [ngClass]="{'col-md-9 col-sm-9': isVisible}" [ngClass]="{'col-md-12 col-sm-12': !isVisible}">
+          <div class="row">
+            <app-messageboard></app-messageboard>
+          </div>
+          <div class="row">
+            <app-new-message></app-new-message>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3" *ngIf="isVisible">
+          <div class="row">
+            <button (click)='visibleClicked()' [routerLink]="['/messages']"class="pull-right">X</button>
+          </div>
+          <div class="row">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <app-new-message></app-new-message>
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-3 resultsbar">
-      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
