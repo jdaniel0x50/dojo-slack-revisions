@@ -1,7 +1,7 @@
 <form class="ng-untouched ng-pristine ng-invalid" (submit)="onSubmit(); loginForm.reset()" #loginForm='ngForm'>
   <div class="form-group">
     <label for="loginEmail">Email:</label>
-    <input type="text" name="loginEmail" required minlength="4" maxlength="20" pattern="([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+"
+    <input type="text" name="loginEmail" required minlength="4" maxlength="100" pattern="([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+"
       [ngClass]="{'focus': loginEmail.dirty && !loginEmail.valid, 'good': loginEmail.valid}" [(ngModel)]="user.email" #loginEmail='ngModel'
       class="form-control">
     <p *ngIf="loginEmail.errors && loginEmail.invalid && loginEmail.dirty" class="error">A valid email address is required</p>
