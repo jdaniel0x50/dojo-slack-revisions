@@ -4,3 +4,12 @@ input{
 .line{
     border-bottom: 1px black solid;
 }
+.checkColor {
+    color: white;
+    background-color: #4d394b;
+    border: 1px solid #4d394b;
+}
+.btn-transparent {
+    background: transparent;
+    border: none;
+}
