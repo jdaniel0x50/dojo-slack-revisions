@@ -1,2 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <span class="font-weight-bold mr-4">Development Links:</span>
+        <a [routerLink]="['']">Login</a>
+        <a [routerLink]="['messages']">Messages</a>
+        <a [routerLink]="['messages', 'profile']">Profile</a>
+        <a [routerLink]="['messages', 'comment']">Comment</a>
+        <a [routerLink]="['newTeam']">Create Team</a>
+        <a [routerLink]="['newChannel']">Create Channel</a>
 
-<router-outlet></router-outlet>
+    </div>
+    <router-outlet></router-outlet>
+</div>

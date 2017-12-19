@@ -1,46 +1,57 @@
-<div class="row col-md-12 mx-auto">
+<div class="row mx-auto">
   <h2 class="mb-3">Create a New @Channel</h2>
-  <div class="row col-md-12 mx-auto itemBox">
-    <form (submit)="onSubmit(); createChannel.reset()" class="row form col-md-12 mx-0 px-0" name="createChannel" #createChannel="ngForm">
-      <div class="row col-md-12 form-group">
-        <label for="name" class="col-form-label col-md-2 m-0">
+  <div class="row mx-auto itemBox">
+    <form (submit)="onSubmit(); createChannel.reset()" class="form-horizontal mx-0 px-0" name="createChannel" #createChannel="ngForm">
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2 m-0">
           <small>*@Channel Name</small>
         </label>
-        <input name="name" type="text" tabindex="1"
-          class="form-control col-md-9" 
-          placeholder="Name ..." 
-          minlength="2" 
-          maxlength="255"
-          required 
-          [(ngModel)]="channel.name" 
-          #name="ngModel">
+        <div class="col-md-9">
+          <input name="name" type="text" tabindex="1"
+            class="form-control" 
+            placeholder="Name ..." 
+            minlength="2" 
+            maxlength="255"
+            required 
+            [(ngModel)]="channel.name" 
+            #name="ngModel">
+        </div>
         <div class="row text-danger">
           <small class="col-md-12" *ngIf="name.errors?.required && name.touched">Name is required.</small>
           <small class="col-md-12" *ngIf="name.errors?.minlength && name.touched">Name must have at least 2 characters.</small>
           <small class="col-md-12" *ngIf="name.errors?.maxlength && name.touched">Name may have no more than 255 characters.</small>
         </div>
       </div>
-      <div class="row col-md-12 form-group">
-        <label for="purpose" class="col-form-label col-md-2 m-0">
+      <div class="form-group">
+        <label for="purpose" class="control-label col-md-2 m-0">
           <small>Purpose</small>
         </label>
-        <textarea name="purpose" type="text" tabindex="2"
-          class="form-control col-md-9"
-          rows="3" 
-          minlength="2" 
-          maxlength="255"
-          required 
-          [(ngModel)]="channel.purpose" 
-          #purpose="ngModel">Describe the purpose for this channel for your users ...</textarea>
+        <div class="col-md-9">
+          <textarea name="purpose" type="text" tabindex="2"
+            class="form-control"
+            placeholder="Describe the purpose for this channel for your users ..."
+            rows="3" 
+            minlength="2" 
+            maxlength="255"
+            required 
+            [(ngModel)]="channel.purpose" 
+            #purpose="ngModel"></textarea>
+        </div>
         <div class="row text-danger">
           <small class="col-md-12" *ngIf="purpose.errors?.required && purpose.touched">Purpose is required.</small>
           <small class="col-md-12" *ngIf="purpose.errors?.minlength && purpose.touched">Purpose must have at least 2 characters.</small>
           <small class="col-md-12" *ngIf="purpose.errors?.maxlength && purpose.touched">Purpose may have no more than 255 characters.</small>
         </div>
       </div>
-      <div class="row col-md-12 form-group text-right">
-        <input type="reset" tabindex="2" class="col-md-2 form-control mx-4 btn btn-info" value="Cancel">
-        <input type="submit" tabindex="3" class="col-md-2 form-control btn btn-secondary" value="Add Channel" [disabled]="createChannel.invalid">
+      <div class="row">
+        <div class="form-group text-right">
+          <div class="col-md-2">
+            <input type="reset" tabindex="2" class="btn btn-basic btn-md" value="Cancel">
+          </div>
+          <div class="col-md-2">
+            <input type="submit" tabindex="3" class="btn btn-primary btn-md" value="Add Channel" [disabled]="createChannel.invalid">
+          </div>
+        </div>
       </div>
     </form>
   </div>
