@@ -23,4 +23,11 @@ export class UserService {
     .map(response => this.userSession = response.json())
     .toPromise()
   }
+
+  findUser(searchInput){
+    console.log('Searching for user:', searchInput)
+    return this._Http.post('/findUser', searchInput)
+    .map(response => response.json())
+    .toPromise()
+  }
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { CreateChannelComponent } from './home/create-channel/create-channel.component';
 import { JoinComponent } from './join/join.component';
+import { ResultsComponent } from './home/results/results.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     children:[
       {path: 'profile', pathMatch: 'full', component: ProfileComponent},
       {path: 'comment', pathMatch: 'full', component: CommentComponent},
+      {path: 'searchResults', pathMatch: 'full', component: ResultsComponent},
     ]
   },
   {

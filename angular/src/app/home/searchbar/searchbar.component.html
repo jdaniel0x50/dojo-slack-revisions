@@ -1,9 +1,9 @@
 <div class="col-md-3 col-sm-3 col-md-offset-9 col-sm-offset-9 line">
   <div>
-    <form>
+    <form (submit)='onSubmit(); searchForm.reset()' #searchForm='ngForm'>
       <div class="input-group">
-        <input type="text" placeholder="Search..">
-        <input type="submit" value="Submit">
+        <input name = "searchInput" type = "text" placeholder="Search.."  [(ngModel)] = 'userInput' >
+        <input type="submit">
       </div>
     </form>
   </div>
