@@ -12,7 +12,7 @@ module.exports = function(app){
     app.post('/LoginUser', function(req, res){
         UserController.login(req, res);
     });
-    app.post('/ReadUser', function(req, res){
+    app.post('/findUser', function(req, res){
         UserController.read(req, res);
     });
     app.post('/UpdateUser', function(req, res){
