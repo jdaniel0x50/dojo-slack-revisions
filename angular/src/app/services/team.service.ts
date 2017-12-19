@@ -32,4 +32,19 @@ export class TeamService {
       );
   }
 
+  joinTeam(team: Team) {
+    console.log("At team service!!")
+    this._http.post(_dbUrl + "join", team)
+    .subscribe(
+      response => {
+        console.log("response")
+        this.updateCurrentTeamObserver(response.json());
+      },
+      error => {
+        console.log("There were errors in joining this team");
+        console.log(error);
+      }
+    );
+  }
+
 }

@@ -38,8 +38,11 @@ module.exports = function(app){
     app.get('/api/team/:id', function (req, res){
         TeamController.getTeam(req, res);
     });
+    app.post('/api/team/join', function  (req, res){
+        TeamController.joinTeam(req, res);
+    });
     app.get('/api/team/:id/destroy', function (req, res){
-        TeamController.getTeam(req, res);
+        TeamController.destroyTeam(req, res);
     })
 
     //Channel Routes
