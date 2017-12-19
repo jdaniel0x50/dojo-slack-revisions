@@ -40,7 +40,7 @@ export class MessageService {
   }
 
   getChannelMsgs(channelId: String) {
-    this._http.get(_dbUrl + "/search?ch=", channelId)
+    this._http.get(_dbUrl + "search?ch=", channelId)
       .subscribe(
       response => {
         this.updateMsgsObserver(response.json());

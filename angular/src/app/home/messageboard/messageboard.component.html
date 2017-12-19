@@ -1,13 +1,15 @@
-<div class="row" *ngFor="let msg of messages">
-  <div class="col-md-1">
-    Img
-  </div>
-  <div class="col-md-11">
-    <div class="row">
-      Username
+<div class="row" *ngIf="messages.length > 0">
+  <div class="row" *ngFor="let msg of messages">
+    <div class="col-md-1">
+      Img
     </div>
-    <div class="row">
-      Message Content
+    <div class="col-md-11">
+      <div class="row">
+        Username
+      </div>
+      <div class="row">
+        Message Content
+      </div>
     </div>
   </div>
 </div>
