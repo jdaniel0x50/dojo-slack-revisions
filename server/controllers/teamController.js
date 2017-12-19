@@ -97,6 +97,33 @@ module.exports = {
             }
         });
     },
+    joinTeam: function(req, res) {
+        console.log("AT TEAM CONTROLLER")
+        Team.findOneAndUpdate({name: new RegExp(req.body.name, "i")},
+            {
+                $addToSet: {users: req.session.userId}
+            }, 
+            function(err, team){
+            console.log("SUBMITTED NAME", req.body.name)
+            if(err || team == null){
+                console.log("Error joining logged in user to team");
+                return res.json({Error: "Error joining logged in user to team"})
+            } else {
+                console.log("Success joining user to team");
+                User.findOneAndUpdate({_id: req.session.userId},
+                {
+                    $addToSet: {teams: team._id}
+                },
+                function(err, user){
+                    if(err){
+                        console.log("Could not add team to users list of teams")
+                    } else {
+                        return res.json(team)
+                    }
+                });
+            }
+        });
+    },
     // ADD USER NEEDS A CUSTOM OBJECT FROM FRONT END WITH 'user' field
     addUser: function(req, res) {
         User.findOne({_id: req.body.user},

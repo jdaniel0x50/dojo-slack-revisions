@@ -1,0 +1,26 @@
+<div class="row col-md-12 mx-auto">
+    <h2 class="mb-3">Join a Workspace (Team)</h2>
+    <div class="row col-md-12 mx-auto itemBox">
+      <form (submit)="onSubmit(); joinTeam.reset()" class="row form col-md-12 mx-0 px-0" name="joinTeam" #joinTeam="ngForm">
+        <div class="row col-md-12 form-group">
+          <input name="name" type="text" tabindex="1"
+            class="form-control col-md-9" 
+            placeholder="Enter your team's name to join..." 
+            minlength="2" 
+            maxlength="255"
+            required 
+            [(ngModel)]="team.name" 
+            #name="ngModel">
+          <div class="row text-danger">
+            <small class="col-md-12" *ngIf="name.errors?.required && name.touched">Name is required.</small>
+            <small class="col-md-12" *ngIf="name.errors?.minlength && name.touched">Team names have at least 2 characters.</small>
+            <small class="col-md-12" *ngIf="name.errors?.maxlength && name.touched">Name may have no more than 255 characters.</small>
+          </div>
+        </div>
+        <div class="row col-md-12 form-group text-right">
+          <input type="reset" tabindex="2" class="col-md-2 mx-4 btn btn-info" value="Cancel">
+          <input type="submit" tabindex="3" class="col-md-2 btn btn-secondary" value="Add Team" [disabled]="joinTeam.invalid">
+        </div>
+      </form>
+    </div>
+  </div>

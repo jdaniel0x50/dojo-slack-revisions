@@ -12,7 +12,7 @@ export class CreateTeamComponent implements OnInit {
   team: Team = new Team();
 
   constructor(
-    private _teaamService: TeamService,
+    private _teamService: TeamService,
     private _router: Router
   ) { }
 
@@ -20,7 +20,7 @@ export class CreateTeamComponent implements OnInit {
   }
 
   onSubmit() {
-    this._teaamService.createTeam(this.team);
+    this._teamService.createTeam(this.team);
     this._router.navigateByUrl("/");
   }
 

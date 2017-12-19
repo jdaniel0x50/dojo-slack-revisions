@@ -1,3 +1,13 @@
-<p>
-  messageboard works!
-</p>
+<div class="row" *ngFor="let msg of messages">
+  <div class="col-md-1">
+    Img
+  </div>
+  <div class="col-md-11">
+    <div class="row">
+      Username
+    </div>
+    <div class="row">
+      Message Content
+    </div>
+  </div>
+</div>

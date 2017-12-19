@@ -26,8 +26,9 @@ import { TeamService } from './services/team.service';
 import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
-import { SearchResultsService } from './services/search-results.service'
-
+import { JoinComponent } from './join/join.component';
+import { TeamSearchComponent } from './join/team-search/team-search.component';
+import { SearchResultsService } from './services/search-results.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { SearchResultsService } from './services/search-results.service'
     CreateTeamComponent,
     CreateChannelComponent,
     JoinComponent,
-    ResultsComponent
+    TeamSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +60,7 @@ import { SearchResultsService } from './services/search-results.service'
     ChannelService,
     MessageService,
     CommentService,
+    SearchResultsService,
     SearchResultsService
   ],
   bootstrap: [AppComponent]

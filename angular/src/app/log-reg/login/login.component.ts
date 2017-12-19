@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this._UserService.loginUser(this.user)
     .then(response =>{
       if(response.loggedIn){
-        this._Router.navigateByUrl('/messages')
+        this._Router.navigateByUrl('/join')
       } else {
         this.error = response.Error
       }

@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(){
     this._UserService.registerUser(this.user)
-      .then(response => this._Router.navigateByUrl('/messages'))
+      .then(response => this._Router.navigateByUrl('/join'))
       .catch(err => console.log(err))
   }
 
