@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-message.component.css']
 })
 export class NewMessageComponent implements OnInit {
-  @Input() channelId: String;
+  // @Input() channelId: String;
+
+  // developmental variables
+  teamId: String = "5a398ac2e97b1f1a38d165da";
+  channelId: String = "5a398ac2e97b1f1a38d165db";
+
   msg: Message = new Message();
 
   constructor(
@@ -22,6 +27,9 @@ export class NewMessageComponent implements OnInit {
   }
 
   onSubmit() {
+    this.msg._channel = this.channelId;
+    console.log("Submitting message:");
+    console.log(this.msg);
     this._msgService.createMsg(this.msg);
     this.msg = new Message();
   }

@@ -42,7 +42,7 @@ export class CommentService {
   }
 
   getMsgComments(msgId: String) {
-    this._http.get(_dbUrl + "/search?mg=", msgId)
+    this._http.get(_dbUrl + "search?mg=", msgId)
       .subscribe(
       response => {
         this.updateCommentsObserver(response.json());

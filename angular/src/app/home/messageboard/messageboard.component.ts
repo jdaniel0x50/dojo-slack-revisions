@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./messageboard.component.css']
 })
 export class MessageboardComponent implements OnInit {
-  @Input() channelId: String;
+  // @Input() channelId: String;
+
+  // developmental variables
+  teamId: String = "5a398ac2e97b1f1a38d165da";
+  channelId: String = "5a398ac2e97b1f1a38d165db";
+
   messages: Array<Message> = [];
 
   constructor(
@@ -20,6 +25,7 @@ export class MessageboardComponent implements OnInit {
 
   ngOnInit() {
     this._msgService.getChannelMsgs(this.channelId);
+    console.log(this.messages);
     this._msgService.messagesObserver.subscribe(
       (msgData) => this.messages = msgData
     )
