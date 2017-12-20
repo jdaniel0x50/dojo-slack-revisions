@@ -31,7 +31,7 @@ export class SearchbarComponent implements OnInit {
     if(this.userInput[0]==='@'){
       if(this.userInput[1]==='u' || this.userInput[1]==='U'){
         //search user
-        this.searchResults.user = this._UserService.findUser({ input: this.userInput });
+        // this.searchResults.user = this._UserService.findUser({ input: this.userInput });
       } else if(this.userInput[1]==='t' || this.userInput[1]==='T'){
         //search team
       } else if(this.userInput[1]==='c' || this.userInput[1]==='C'){
@@ -39,10 +39,11 @@ export class SearchbarComponent implements OnInit {
       }
     } else{
       //search all three
-      this.searchResults.user = this._UserService.findUser({input:this.userInput});
+      // this.searchResults.user = this._UserService.findUser({input:this.userInput});
     }
     this._SearchResultsService.updateSearchResults(this.searchResults);
     console.log('made it')
     this.SearchResultEmitter.emit()
     this._Router.navigateByUrl('messages/searchResults')
+  }
 }
