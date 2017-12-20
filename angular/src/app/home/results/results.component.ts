@@ -11,9 +11,9 @@ export class ResultsComponent implements OnInit {
   constructor(private _SearchResultsService: SearchResultsService) { }
 
   ngOnInit() {
-    this._SearchResultsService.searchResults.subscribe(
-      (searchResults)=>{this.currentResults = searchResults}
-    )
+    // this._SearchResultsService.searchResults.subscribe(
+    //   (searchResults)=>{this.currentResults = searchResults}
+    // )
   }
   currentResults;
 }

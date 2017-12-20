@@ -9,3 +9,32 @@
 .navbar{
     padding: 0;
 }
+.mainComponent {
+    padding: 10px;
+    height: 95vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.viewHeight {
+    border-top: 0.5px solid lightgray;
+    padding-top: 5px;
+    height: 85vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.msgsContainer {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.searchHeight {
+    height: 10vh;
+}
+.msg-bottom {
+    height: auto;
+    background-color: white;
+    position: absolute;
+    bottom: 0px;
+}

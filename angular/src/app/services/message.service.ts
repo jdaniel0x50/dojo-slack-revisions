@@ -16,6 +16,8 @@ export class MessageService {
   }
 
   createMsg(msg: Message) {
+    console.log("Message Service Create");
+    console.log(msg);
     this._http.post(_dbUrl + "create", msg)
       .subscribe(
       response => {
@@ -28,7 +30,7 @@ export class MessageService {
   }
 
   updateMsg(msg: Message) {
-    this._http.post("/api/message/" + msg._id + "create", msg)
+    this._http.post("/api/message/" + msg._id + "update", msg)
       .subscribe(
       response => {
         this.getChannelMsgs(msg._channel);
@@ -40,7 +42,8 @@ export class MessageService {
   }
 
   getChannelMsgs(channelId: String) {
-    this._http.get(_dbUrl + "search?ch=", channelId)
+    console.log(_dbUrl + "search/ch/" + channelId)
+    this._http.get(_dbUrl + "search/ch/" + channelId)
       .subscribe(
       response => {
         this.updateMsgsObserver(response.json());

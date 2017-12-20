@@ -45,11 +45,12 @@ export class SearchbarComponent implements OnInit {
       // this.searchResults.team = this._TeamService.findTeam({input:this.userInput});
       // this.searchResults.channel = this._ChannelService.findChannel({input:this.userInput});
       // this.searchResults.message = this._MessageService.findMessage({input:this.userInput});
-      this.searchResults.user = this._UserService.findUser({input:this.userInput});
-      this._SearchResultsService.updateSearchResults(this.searchResults);
-      console.log('made it')
-      this.SearchResultEmitter.emit()
-      this._Router.navigateByUrl('messages/searchResults')
+
+      // this.searchResults.user = this._UserService.findUser({input:this.userInput});
+      // this._SearchResultsService.updateSearchResults(this.searchResults);
+      // console.log('made it')
+      // this.SearchResultEmitter.emit()
+      // this._Router.navigateByUrl('messages/searchResults')
     }
   }
 }

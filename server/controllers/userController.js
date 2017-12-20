@@ -1,6 +1,20 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+const path = require('path');
+
+function getDefaultImgFiles(filesArr) {
+    // create a variable that points to the path where default images exist
+    var img_path = path.join(__dirname, '../../angular/src/assets/img/default');
+    // read all files in img_path
+    fs.readdirSync(img_path).forEach(function (file) {
+        if (file.indexOf('.jpg') >= 0) {
+            // push each .jpg file to the files array
+            filesArr.push(file);
+        }
+    });
+}
 
 module.exports = {
     create: function (req, res) {
@@ -12,9 +26,18 @@ module.exports = {
         let newUser = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password
         });
+        
+        // assign random profile img by default
+        let filesArr = [];
+        getDefaultImgFiles(filesArr);
+        console.log(filesArr);
+        let randImg = Math.floor(Math.random() * filesArr.length);
+        newUser.profile_picture = "assets/img/default/" + filesArr[randImg];
+
         newUser.save(function (newUserErrors, user) {
             if (newUserErrors) {
                 console.log('===ERRORS SAVING NEW USER===')

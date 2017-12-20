@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserRegister } from '../../models';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router'
 
@@ -13,14 +13,15 @@ export class RegistrationComponent implements OnInit {
   constructor(private _UserService: UserService, private _Router: Router) { }
   ngOnInit() {
   }
-
-  user = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    password_conf: ''
-  }
+  user: UserRegister = new UserRegister();
+  
+  // user2 = {
+  //   first_name: '',
+  //   last_name: '',
+  //   email: '',
+  //   password: '',
+  //   password_conf: ''
+  // }
 
   onSubmit(){
     this._UserService.registerUser(this.user)

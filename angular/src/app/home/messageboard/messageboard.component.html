@@ -1,14 +1,21 @@
-<div class="row" *ngIf="messages.length > 0">
-  <div class="row" *ngFor="let msg of messages">
-    <div class="col-md-1">
-      Img
-    </div>
-    <div class="col-md-11">
+<div class="row scroll" *ngIf="messages.length > 0">
+  <div class="row each_message" *ngFor="let msg of messages">
+    <div class="col-md-12">
       <div class="row">
-        Username
       </div>
-      <div class="row">
-        Message Content
+      <div class="col-md-1">
+        <div *ngIf="msg._author.profile_picture">
+          <img [src]="msg._author.profile_picture" class="userThumb">
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          <span><strong>{{msg._author.username}}</strong></span>
+          <span class="msgTime"><small>{{msg.createdAt | date: 'full'}}</small></span>
+        </div>
+        <div class="row">
+          <p>{{msg.content}}</p>
+        </div>
       </div>
     </div>
   </div>
