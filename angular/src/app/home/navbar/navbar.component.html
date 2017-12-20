@@ -1,9 +1,9 @@
-<div class="parent">
-  <div class="col-sm-2 grey child">
+<div>
+  <div class="col-sm-2 grey" id="team" (mouseover)>
     <h4>Teams</h4>
     <button [routerLink]="['/newTeam']">+</button>
   </div>
-  <div class="col-sm-9 navside child">
+  <div class="col-sm-9 navside" id="channel">
     <div class="row">
       <h4>Current Team</h4>
       <a (click)='profileClicked()' [routerLink]="['profile']">User name</a>
@@ -14,3 +14,6 @@
     </div>
   </div>
 </div>
+<script>
+  
+</script>

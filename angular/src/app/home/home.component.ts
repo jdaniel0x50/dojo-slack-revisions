@@ -22,4 +22,7 @@ export class HomeComponent implements OnInit {
       this.isVisible = true
     }
   }
+  searchSubmitted(){
+    this.isVisible = true;
+  }
 }
