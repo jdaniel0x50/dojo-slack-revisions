@@ -52,8 +52,8 @@ module.exports = {
                     first_name: newUser.first_name,
                     last_name: newUser.last_name,
                     email: newUser.email,
-                    username: queryResponse.username,
-                    profile_picture: queryResponse.profile_picture,
+                    username: newUser.username,
+                    profile_picture: newUser.profile_picture,
                 }
                 return res.json(response)
             }
