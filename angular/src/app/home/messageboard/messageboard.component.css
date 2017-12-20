@@ -5,3 +5,6 @@
     margin: 5px auto;
     border-bottom: 0.25px solid lightgray;
 }
+.each_message:hover {
+    background-color: floralwhite;
+}
