@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../services/team.service';
 import { ChannelService } from '../services/channel.service';
+import { Team } from '../models'
+import { Channel } from '../models'
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,31 @@ import { ChannelService } from '../services/channel.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  currentTeam = new Team();
+  channels: Channel[] = []
+  teams: Team[] = []
+
   constructor(private _TeamService: TeamService, private _ChannelService: ChannelService) { }
+
   ngOnInit() {
+    this._TeamService.teamCurrentObserver.subscribe(
+      (response) => { 
+        this.currentTeam = response;
+        this._ChannelService.getTeamChannels(response._id);
+        this._ChannelService.channelsObserver.subscribe(
+          (channelResponse) => this.channels = channelResponse
+        )
+      }
+    )
+    this._TeamService.getUserTeams();
+    this._TeamService.teamsObserver.subscribe(
+      (response) => { 
+        this.teams = response;
+        console.log("TEAMS", this.teams) 
+      }
+    )
   }
-  currentTeam = ''
+
   isVisible = false;
 
   visibleClicked(){

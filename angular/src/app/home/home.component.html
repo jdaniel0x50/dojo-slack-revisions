@@ -1,7 +1,8 @@
 <div class="container-fluid">
+  <p>{{currentTeam | json}}</p>
   <div class="row">
     <div class="col-sm-2 navbar">
-      <app-navbar (ProfileEmitter)='visibleClicked()'></app-navbar>
+      <app-navbar (ProfileEmitter)='visibleClicked()' [channels]="channels" [teams]="teams"></app-navbar>
     </div>
     <div class="col-md-10 col-sm-10 mainComponent">
       <div class="row searchHeight">
@@ -10,7 +11,6 @@
       <div class="row viewHeight">
         <div [ngClass]="{'col-md-9 col-sm-9': isVisible}" [ngClass]="{'col-md-12 col-sm-12': !isVisible}">
           <div class="row msgsContainer">
-            {{currentTeam.channels | json}}
             <app-messageboard></app-messageboard>
           </div>
           <div class="row msg-bottom">

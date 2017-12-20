@@ -17,6 +17,7 @@ export class ChannelService {
   }
   updateCurrentChannelObserver(newData: any): void {
     this.channelCurrentObserver.next(newData);
+    console.log("Active Channel:", this.channelCurrentObserver)
   }
 
   createChannel(channel: Channel) {

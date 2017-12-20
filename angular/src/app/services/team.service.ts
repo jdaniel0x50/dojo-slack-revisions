@@ -18,6 +18,7 @@ export class TeamService {
   }
   updateCurrentTeamObserver(newData: any): void {
     this.teamCurrentObserver.next(newData);
+    console.log("Active Team:", this.teamsObserver)
   }
 
   createTeam(team: Team) {
@@ -40,18 +41,31 @@ export class TeamService {
       response => {
         console.log("Join Team Success:", response.json())
         let x = response.json()
+        this.updateCurrentTeamObserver(response.json());
         if(x.Error){
           this._router.navigateByUrl("/join");
         } else {
           this._router.navigateByUrl("/messages");
         }
-        this.updateCurrentTeamObserver(response.json());
       },
       error => {
         console.log("There were errors in joining this team");
         console.log(error.json());
       }
     );
+  }
+  //No parameter passed in because I am using session to grab the user's teams by ID
+  getUserTeams() {
+    console.log("Getting User teams....")
+    this._http.get("/api/user/teams")
+    .subscribe(
+      response => {
+        this.updateTeamsObserver(response.json())
+      },
+      error => {
+        console.log("Errors getting user teams")
+      }
+    )
   }
 
 }
