@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild, ElementRef, OnInit, Input } from '@angular/core';
 import { Message } from '../../models';
 import { MessageService } from '../../services/message.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MessageboardComponent implements OnInit {
   // @Input() channelId: String;
+  @ViewChild('all_messages') el_messages: ElementRef;
 
   // developmental variables
   teamId: String = "5a398ac2e97b1f1a38d165da";
@@ -25,10 +26,21 @@ export class MessageboardComponent implements OnInit {
 
   ngOnInit() {
     this._msgService.getChannelMsgs(this.channelId);
-    console.log(this.messages);
     this._msgService.messagesObserver.subscribe(
-      (msgData) => this.messages = msgData
-    )
+      (msgData) => {
+        this.messages = msgData;
+        // console.log(this.messages);
+        // if (this.messages.length > 0) {
+        //   window.setInterval(function() {
+        //     var elem = document.querySelector(".msgsContainer");
+        //     elem.scrollTop = elem.scrollHeight;
+        //   }, 1000);
+        // }
+    });
+  }
+  ngAfterViewChecked() {
+    console.log("VIEW INITIALIZED!");
+    this.scrollToBottom();
   }
   ngOnChanges(changes) {
     if (changes.channelId) {
@@ -36,4 +48,11 @@ export class MessageboardComponent implements OnInit {
     }
   }
 
+  scrollToBottom(): void {
+    try {
+      var elem = document.querySelector(".msgsContainer");
+      elem.scrollTop = elem.scrollHeight;
+    }
+    catch (err) { }
+  }
 }

@@ -1,5 +1,5 @@
-<div class="row scroll" *ngIf="messages.length > 0">
-  <div class="row each_message" *ngFor="let msg of messages">
+<div class="row scroll" id="all_messages" *ngIf="messages.length > 0">
+  <div class="row each_message" *ngFor="let msg of messages; let idx = index">
     <div class="col-md-12">
       <div class="row">
       </div>
@@ -10,10 +10,14 @@
       </div>
       <div class="col-md-10">
         <div class="row">
-          <span><strong>{{msg._author.username}}</strong></span>
-          <span class="msgTime"><small>{{msg.createdAt | date: 'full'}}</small></span>
+          <span>
+            <strong>{{msg._author.username}}</strong>
+          </span>
+          <span class="msgTime">
+            <small>{{msg.createdAt | date: 'full'}}</small>
+          </span>
         </div>
-        <div class="row">
+        <div class="row" [id]="idx">
           <p>{{msg.content}}</p>
         </div>
       </div>
