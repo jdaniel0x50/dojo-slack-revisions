@@ -37,7 +37,7 @@ export class SearchbarComponent implements OnInit {
       } else if(this.userInput[1]==='c' || this.userInput[1]==='C'){
         //search channel
       }
-    } else{
+    } else {
       //search all three
       this._UserService.findUser({ input: this.userInput }).then(response => { this.searchResults.user = response});
     }

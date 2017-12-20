@@ -1,14 +1,14 @@
 <form (submit)="onSubmit(); createMsg.reset()" class="form" name="createMsg" #createMsg="ngForm">
   <div class="input-group">
     <div class="input-group-addon">+</div>
-    <input type="text" class="form-control" placeholder="Message"
+    <textarea type="text" class="form-control" placeholder="Message"
       tabindex="1"
       name="content"
       minlength="2"
       maxlength="500"
       required
       [(ngModel)]="msg.content"
-      #content="ngModel">
+      #content="ngModel"></textarea>
     <div class="input-group-addon checkColor">
       <input type="submit" tabindex="2" value="&#10004;"
         [disabled]="createMsg.invalid" 
