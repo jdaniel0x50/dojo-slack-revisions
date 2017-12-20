@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { BehaviorSubject } from 'Rxjs';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -9,6 +10,10 @@ export class UserService {
   constructor(private _Http: Http) { }
 
   userSession = {}
+
+ returnSession(){
+   return this.userSession;
+ }
 
   registerUser(User){
     console.log('Registering User:', User)

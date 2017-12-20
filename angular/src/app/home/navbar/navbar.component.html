@@ -1,5 +1,5 @@
 <div>
-  <div class="col-sm-2 grey" id="team" (mouseover)>
+  <div class="col-sm-2 grey" id="team">
     <h4>Teams</h4>
     <p *ngFor="let team of teams"><a (click)="setTeam(team)">{{team.name}}</a></p>
     <button [routerLink]="['/newTeam']">+</button>
@@ -17,6 +17,3 @@
     </div>
   </div>
 </div>
-<script>
-  
-</script>
