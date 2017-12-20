@@ -31,6 +31,8 @@
     height: 10vh;
 }
 .msg-bottom {
+    display: flex;
+    flex-direction: column;
     height: auto;
     background-color: white;
     position: absolute;
