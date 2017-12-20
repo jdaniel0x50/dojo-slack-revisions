@@ -21,7 +21,7 @@ export class CreateTeamComponent implements OnInit {
 
   onSubmit() {
     this._teamService.createTeam(this.team);
-    this._router.navigateByUrl("/");
+    this._router.navigateByUrl("/messages");
   }
 
 }
