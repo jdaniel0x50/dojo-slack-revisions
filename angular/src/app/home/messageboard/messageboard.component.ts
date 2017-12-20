@@ -53,8 +53,8 @@ export class MessageboardComponent implements OnInit {
     this.socket.on("new_message", function (data) {
       console.log("Received emit from the server for a new message!");
       if (data.message._channel === this.channelId) {
-        this.messages.push(data.message);
-        // this._msgService.getChannelMsgs(this.channelId);
+        // this.messages.push(data.message);
+        this._msgService.getChannelMsgs(this.channelId);
         this.scrollToBottom();
       }
     }.bind(this));
