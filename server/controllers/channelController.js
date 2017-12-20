@@ -9,7 +9,7 @@ module.exports = {
     create: function(req, res){
         console.log('===INSIDE CHANNEL CREATE CONTROLLER===')
         //Assumes team id is in route path
-        Team.findOne({_id: req.body._team},
+        Team.findOne({_id: req.params.id},
         function(err, team){
             let newChannel = new Channel({
                 name: req.body.name,

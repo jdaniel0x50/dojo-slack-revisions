@@ -1,8 +1,8 @@
 <div>
   <div class="col-sm-2 grey" id="team">
     <h4>Teams</h4>
-    <p *ngFor="let team of teams"><a (click)="setTeam(team)">{{team.name}}</a></p>
-    <button [routerLink]="['/newTeam']">+</button>
+    <p *ngFor="let team of teams"><a (click)="setTeam(team)">@ {{team.name}}</a></p>
+    <button [routerLink]="['/join']">+</button>
   </div>
   <div class="col-sm-9 navside" id="channel">
     <div class="row">
@@ -12,7 +12,7 @@
     </div>
     <div class="row channel">
       <h5>Channels</h5>
-      <p *ngFor="let channel of channels"><a (click)="setChannel(channel)">{{channel.name}}</a></p>
+      <p *ngFor="let channel of channels"><a (click)="setChannel(channel)"># {{channel.name}}</a></p>
       <button [routerLink]="['/newChannel']">+</button>
     </div>
   </div>

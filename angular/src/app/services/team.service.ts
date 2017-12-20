@@ -68,4 +68,12 @@ export class TeamService {
     )
   }
 
+  getCurrentTeamId(){
+    this.teamCurrentObserver.subscribe(
+      (response) => { 
+        return response._id 
+      }
+    )
+  }
+
 }
