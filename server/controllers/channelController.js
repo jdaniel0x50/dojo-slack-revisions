@@ -88,4 +88,13 @@ module.exports = {
         console.log('Deleting all channels for team id', id)
         Channel.remove({_team: id})
     },
+    getChannelsByTeam: function(req, res){
+        Channel.find({_team: req.params.id}, function(err, channels){
+            if(err){
+                console.log("Error getting channels by team")
+            } else {
+                return res.json(channels)
+            }
+        })
+    }
 }

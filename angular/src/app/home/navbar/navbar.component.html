@@ -1,15 +1,18 @@
 <div class="parent">
   <div class="col-sm-2 grey child">
     <h4>Teams</h4>
+    <p *ngFor="let team of teams"><a (click)="setTeam(team)">{{team.name}}</a></p>
     <button [routerLink]="['/newTeam']">+</button>
   </div>
   <div class="col-sm-9 navside child">
     <div class="row">
       <h4>Current Team</h4>
+      <p>{{currentTeam.name}}</p>
       <a (click)='profileClicked()' [routerLink]="['profile']">User name</a>
     </div>
     <div class="row channel">
       <h5>Channels</h5>
+      <p *ngFor="let channel of channels"><a (click)="setChannel(channel)">{{channel.name}}</a></p>
       <button [routerLink]="['/newChannel']">+</button>
     </div>
   </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ChannelService } from '../../services/channel.service';
 import { TeamService } from '../../services/team.service';
+import { Channel } from '../../models'
+import { Team } from '../../models'
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +11,29 @@ import { TeamService } from '../../services/team.service';
 })
 export class NavbarComponent implements OnInit {
   @Output() ProfileEmitter = new EventEmitter();
+  @Input() channels: Channel[]
+  @Input() teams: Team[]
+  currentTeam = new Team();
+
   constructor(private _ChannelSerivce: ChannelService, private _TeamService: TeamService, private _ChannelService: ChannelService) { }
+
   ngOnInit() {
+    console.log(this.channels)
+    this._TeamService.teamCurrentObserver.subscribe(
+      (res) => this.currentTeam = res
+    )
   }
 
   profileClicked(){
     this.ProfileEmitter.emit();
     console.log('Emitting')
+  }
+
+  setChannel(data){
+    this._ChannelService.updateCurrentChannelObserver(data);
+  }
+
+  setTeam(data){
+    this._TeamService.updateCurrentTeamObserver(data);
   }
 }
