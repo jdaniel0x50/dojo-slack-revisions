@@ -12,7 +12,7 @@ module.exports = function(app){
     app.post('/LoginUser', function(req, res){
         UserController.login(req, res);
     });
-    app.post('/ReadUser', function(req, res){
+    app.post('/findUser', function(req, res){
         UserController.read(req, res);
     });
     app.post('/UpdateUser', function(req, res){
@@ -64,6 +64,8 @@ module.exports = function(app){
 
     // Message Routes
     app.post('/api/message/create', function (req, res) {
+        console.log("");
+        console.log("**** Inside create route")
         MsgController.create(req, res);
     });
     app.post('/api/message/:id/update', function (req, res) {
@@ -72,17 +74,21 @@ module.exports = function(app){
     app.get('/api/message/:id/destroy', function (req, res) {
         MsgController.destroy(req, res);
     });
-    app.get('/api/message/:id', function (req, res) {
-        MsgController.getById(req, res);
-    });
-    app.get('/api/message/search?ch=:_channel', function (req, res) {
+    app.get('/api/message/search/ch/:_channel', function (req, res) {
+        console.log("")
+        console.log("***** Inside message search by channel route")
         MsgController.getByChannel(req, res);
     });
-    app.get('/api/message/search?au=:_author', function (req, res) {
+    app.get('/api/message/search/au/:_author', function (req, res) {
         MsgController.getByAuthor(req, res);
     });
-    app.get('/api/message/search?q=:search', function (req, res) {
+    app.get('/api/message/search/q/:search', function (req, res) {
         MsgController.getBySearchContent(req, res);
+    });
+    app.get('/api/message/:id', function (req, res) {
+        console.log("")
+        console.log("***** Inside message id route")
+        MsgController.getById(req, res);
     });
 
     // Comment Routes

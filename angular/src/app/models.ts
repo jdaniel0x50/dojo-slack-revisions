@@ -16,7 +16,7 @@ export class User {
 
 export class UserRegister extends User {
     constructor(
-        public password_confirm: String = ""
+        public password_conf: String = ""
     ) { super(); }
 }
 

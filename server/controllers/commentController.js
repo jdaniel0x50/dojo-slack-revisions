@@ -8,7 +8,7 @@ var User = mongoose.model('User'),
 module.exports = {
     getAll: function (req, res) {
         Comment.find({})
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('_message')
             .sort('createdAt')
             .exec(function (err, items) {
@@ -175,7 +175,7 @@ module.exports = {
 
     getById: function (req, res) {
         Comment.findById(req.params.id)
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('_message')
             .exec(function (err, item) {
                 if (err) {
@@ -193,7 +193,7 @@ module.exports = {
 
     getByMessage: function (req, res) {
         Comment.find({ _message: req.params._message })
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('_message')
             .exec(function (err, item) {
                 if (err) {
@@ -211,7 +211,7 @@ module.exports = {
 
     getByAuthor: function (req, res) {
         Comment.find({ _author: req.params._author })
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('_message')
             .exec(function (err, item) {
                 if (err) {
@@ -241,7 +241,7 @@ module.exports = {
                 { 'content': new RegExp(req.params.search, "i") }
             ]
         })
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('_message')
             .sort('createdAt')
             .exec(function (err, item) {

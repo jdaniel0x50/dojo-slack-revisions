@@ -10,7 +10,6 @@ var MessageSchema = new mongoose.Schema({
     },
     content_type: {
         type: String,
-        minlength: 2,
         trim: true
     },
     _author: {

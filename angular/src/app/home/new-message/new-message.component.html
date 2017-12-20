@@ -1,4 +1,4 @@
-<form (click)="onSubmit(); createMsg.reset()" class="form" name="createMsg" #createMsg="ngForm">
+<form (submit)="onSubmit(); createMsg.reset()" class="form" name="createMsg" #createMsg="ngForm">
   <div class="input-group">
     <div class="input-group-addon">+</div>
     <input type="text" class="form-control" placeholder="Message"
@@ -16,16 +16,6 @@
     </div>
     <div class="input-group-addon">@</div>
   </div>
-  <div class="row">
-    {{msg.content}}
-  </div>
-  <div class="row">
-    {{createMsg.invalid}}
-  </div>
-  <div class="row">
-    {{content.errors}}
-  </div>
-
   <div class="row text-danger">
     <!-- <small class="col-md-12" *ngIf="content.errors?.required && content.touched">Content is required.</small> -->
     <small class="col-md-12" *ngIf="content.errors?.minlength && content.touched">Content must have at least 2 characters.</small>

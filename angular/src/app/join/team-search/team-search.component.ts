@@ -24,7 +24,5 @@ export class TeamSearchComponent implements OnInit {
     onSubmit() {
       console.log("search submitted!")
       this._teamService.joinTeam(this.team);
-      this._router.navigateByUrl("/");
     }
-
 }

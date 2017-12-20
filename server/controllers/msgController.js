@@ -9,7 +9,7 @@ const CmntController = require('../controllers/commentController');
 module.exports = {
     getAll: function (req, res) {
         Message.find({})
-            .populate('_author')
+            .populate('_author', { first_name, last_name, username, profile_picture})
             .populate('_channel')
             .populate('comments')
             .sort('createdAt')
@@ -27,6 +27,7 @@ module.exports = {
     },
 
     create: function (req, res) {
+        console.log("*** INSIDE MESSAGE CREATE ***");
         User.findOne({ _id: req.session.userId }, function (err, user) {
             // find the user that authored the message
             // allows ability to push the message to the user
@@ -55,6 +56,9 @@ module.exports = {
                                     _author: req.session.userId,
                                     _channel: req.body._channel,
                                 });
+                                console.log("");
+                                console.log("New Message Item");
+                                console.log(item);
                                 item.save(function (errItem, result) {
                                     if (errItem) {
                                         console.log("There were errors in the message save");
@@ -199,8 +203,9 @@ module.exports = {
     },
 
     getById: function (req, res) {
+        console.log("*** INSIDE MESSAGE GET BY ID ***");
         Message.findById(req.params.id)
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('comments')
             .exec(function (err, item) {
                 if (err) {
@@ -217,8 +222,9 @@ module.exports = {
     },
 
     getByChannel: function (req, res) {
+        console.log("Channel Id in route = ", req.params._channel)
         Message.find({ _channel: req.params._channel })
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('comments')
             .sort('createdAt')
             .exec(function (err, item) {
@@ -237,7 +243,7 @@ module.exports = {
 
     getByAuthor: function (req, res) {
         Message.find({ _author: req.params._author })
-            .populate('_author')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .populate('comments')
             .sort('createdAt')
             .exec(function (err, item) {
@@ -265,7 +271,7 @@ module.exports = {
             },
             { 'content': new RegExp(req.params.search, "i") }
         ] } )
-            .populate('_userPosted')
+            .populate('_author', 'first_name last_name username email status teams profile_picture')
             .sort('createdAt')
             .exec(function (err, item) {
                 if (err) {

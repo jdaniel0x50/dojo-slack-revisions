@@ -1,6 +1,20 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+const path = require('path');
+
+function getDefaultImgFiles(filesArr) {
+    // create a variable that points to the path where default images exist
+    var img_path = path.join(__dirname, '../../angular/src/assets/img/default');
+    // read all files in img_path
+    fs.readdirSync(img_path).forEach(function (file) {
+        if (file.indexOf('.jpg') >= 0) {
+            // push each .jpg file to the files array
+            filesArr.push(file);
+        }
+    });
+}
 
 module.exports = {
     create: function (req, res) {
@@ -12,9 +26,18 @@ module.exports = {
         let newUser = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password
         });
+        
+        // assign random profile img by default
+        let filesArr = [];
+        getDefaultImgFiles(filesArr);
+        console.log(filesArr);
+        let randImg = Math.floor(Math.random() * filesArr.length);
+        newUser.profile_picture = "assets/img/default/" + filesArr[randImg];
+
         newUser.save(function (newUserErrors, user) {
             if (newUserErrors) {
                 console.log('===ERRORS SAVING NEW USER===')
@@ -64,21 +87,16 @@ module.exports = {
         });
     },
     read: function (req, res) {
-        console.log('===INSIDE USER READ CONTROLLER===')
-        console.log('SESSION:', req.session.userId)
+        console.log('===INSIDE USER FIND USER CONTROLLER===')
+        console.log('POST DATA:', req.body)
         if (req.session.userId) {
-            User.findOne({ _id: req.body._id }, function (errors, queryResponse) {
+            User.find({$or: [{first_name: req.body.input}, {last_name: req.body.input}]}, function (errors, queryResponse) {
                 if (errors || queryResponse == null) {
                     console.log('===ERROR FINDING USER===')
                     return res.json({ Error: 'Error finding user' })
                 } else {
-                    let response = {
-                        _id: queryResponse._id,
-                        first_name: queryResponse.first_name,
-                        last_name: queryResponse.last_name,
-                        email: queryResponse.email
-                    }
-                    return res.json(response)
+                    console.log('User search results:', queryResponse)
+                    return res.json(queryResponse)
                 }
             });
         } else {
