@@ -17,6 +17,12 @@ export class HomeComponent implements OnInit {
   constructor(private _TeamService: TeamService, private _ChannelService: ChannelService) { }
 
   ngOnInit() {
+<<<<<<< HEAD
+    // document.getElementById("homeComponent").onload = onHomeLoad();
+    // function onHomeLoad() {
+    
+
+=======
     this._TeamService.teamCurrentObserver.subscribe(
       (response) => { 
         this.currentTeam = response;
@@ -33,6 +39,7 @@ export class HomeComponent implements OnInit {
         console.log("TEAMS", this.teams) 
       }
     )
+>>>>>>> upstream/master
   }
 
   isVisible = false;
@@ -44,5 +51,8 @@ export class HomeComponent implements OnInit {
     else {
       this.isVisible = true
     }
+  }
+  searchSubmitted(){
+    this.isVisible = true;
   }
 }

@@ -1,10 +1,10 @@
-<div class="parent">
-  <div class="col-sm-2 grey child">
+<div>
+  <div class="col-sm-2 grey" id="team" (mouseover)>
     <h4>Teams</h4>
     <p *ngFor="let team of teams"><a (click)="setTeam(team)">@ {{team.name}}</a></p>
     <button [routerLink]="['/join']">+</button>
   </div>
-  <div class="col-sm-9 navside child">
+  <div class="col-sm-9 navside" id="channel">
     <div class="row">
       <h4>Current Team</h4>
       <p>{{currentTeam.name}}</p>
@@ -17,3 +17,6 @@
     </div>
   </div>
 </div>
+<script>
+  
+</script>
