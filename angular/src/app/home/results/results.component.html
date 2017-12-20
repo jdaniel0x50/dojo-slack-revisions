@@ -1,29 +1,12 @@
 <div>
-  <div class="row" *ngIf="currentResults.user.__zone_symbol__state">
-    <h5>Users:</h5>
-    <div *ngFor="let item of currentResults.user.__zone_symbol__value">
-      <p>Name: {{item.first_name}} {{item.last_name}}</p>
-      <p>Username: {{item.username}}</p>
-      <p>Email: {{item.email}}</p>
-    </div>
-  </div>
-  <div class="row" *ngIf="currentResults.team.__zone_symbol__state">
-    <h5>Users:</h5>
-    <div *ngFor="let item of currentResults.team.__zone_symbol__value">
-      <p>Name: {{item.name}}</p>
-    </div>
-  </div>
-  <div class="row" *ngIf="currentResults.channel.__zone_symbol__state">
-    <h5>Users:</h5>
-    <div *ngFor="let item of currentResults.channel.__zone_symbol__value">
-      <p>Name: {{item.name}}</p>
-    </div>
-  </div>
-  <div class="row" *ngIf="currentResults.message.__zone_symbol__state">
-    <h5>Users:</h5>
-    <div *ngFor="let item of currentResults.message.__zone_symbol__value">
-      <p>Author: {{item.author}}</p>
-      <p>Message: {{item.content}}</p>
-    </div>
-  </div>
+  {{currentResults | json}}
+  <br>
+  ======
+  <br>
+  {{currentResults.user.legnth | json}}
+  {{currentResults.user | json}}
+  <br>
+  ======
+  <br>
+  {{displayedResults | json}}
 </div>
