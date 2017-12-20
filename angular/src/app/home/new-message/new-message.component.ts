@@ -29,7 +29,7 @@ export class NewMessageComponent implements OnInit {
     // subscribe to the current channel
     this._channelService.channelCurrentObserver.subscribe(
       (currChannel) => {
-        this.channelId = currChannel;
+        this.channelId = currChannel._id;
       });
   }
 

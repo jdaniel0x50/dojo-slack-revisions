@@ -33,8 +33,8 @@ export class MessageboardComponent implements OnInit {
     this._msgService.getChannelMsgs(this.channelId);
     this._channelService.channelCurrentObserver.subscribe(
       (currChannel) => {
-        this.channelId = currChannel;
-        this._msgService.getChannelMsgs(currChannel);
+        this.channelId = currChannel._id;
+        this._msgService.getChannelMsgs(this.channelId);
       });
     // subscribe to the messages observable (dependent on channel observer)
     this._msgService.messagesObserver.subscribe(
@@ -60,7 +60,7 @@ export class MessageboardComponent implements OnInit {
     }.bind(this));
   }
   ngAfterViewChecked() {
-    console.log("VIEW UPDATED!");
+    // console.log("VIEW UPDATED!");
     this.scrollToBottom();
   }
 
