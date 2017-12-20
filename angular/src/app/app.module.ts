@@ -19,6 +19,7 @@ import { NewMessageComponent } from './home/new-message/new-message.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { CreateChannelComponent } from './home/create-channel/create-channel.component';
 import { ResultsComponent } from './home/results/results.component';
+import { JoinComponent } from './join/join.component';
 
 import { UserService } from './services/user.service';
 import { TeamService } from './services/team.service';
