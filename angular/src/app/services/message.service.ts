@@ -18,15 +18,22 @@ export class MessageService {
   createMsg(msg: Message) {
     console.log("Message Service Create");
     console.log(msg);
-    this._http.post(_dbUrl + "create", msg)
-      .subscribe(
-      response => {
-        this.getChannelMsgs(msg._channel);
-      },
-      error => {
-        console.log("There were errors in the message creation");
-        console.log(error);
-      });
+    return new Promise((resolve, reject) => {
+      this._http.post(_dbUrl + "create", msg)
+        .map(response => response.json())
+        .subscribe(response => {
+          console.log("Completed message create and received response");
+          console.log("Message returned from submit: ");
+          console.log(response);
+          this.getChannelMsgs(msg._channel);
+          resolve(response);
+        },
+        error => {
+          console.log("There were errors in the message creation");
+          console.log(error);
+          reject(error);
+        });
+    });
   }
 
   updateMsg(msg: Message) {
