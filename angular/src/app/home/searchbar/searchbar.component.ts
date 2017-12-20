@@ -37,7 +37,7 @@ export class SearchbarComponent implements OnInit {
       } else if(this.userInput[1]==='c' || this.userInput[1]==='C'){
         //search channel
       }
-    } else{
+    } else {
       //search all three
       this.searchResults.user = this._UserService.findUser({input:this.userInput});
     }
@@ -45,4 +45,5 @@ export class SearchbarComponent implements OnInit {
     console.log('made it')
     this.SearchResultEmitter.emit()
     this._Router.navigateByUrl('messages/searchResults')
+  }
 }
