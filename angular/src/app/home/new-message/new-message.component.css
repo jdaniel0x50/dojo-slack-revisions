@@ -1,7 +1,16 @@
-input{
-    display: inline-block
+form {
+    display: flex;
 }
-.line{
+input {
+    display: inline-block;
+}
+textarea {
+    flex: 1;
+}
+.input-group {
+    flex: 1;
+}
+.line {
     border-bottom: 1px black solid;
 }
 .checkColor {

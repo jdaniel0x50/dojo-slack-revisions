@@ -17,10 +17,6 @@ export class HomeComponent implements OnInit {
   constructor(private _TeamService: TeamService, private _ChannelService: ChannelService) { }
 
   ngOnInit() {
-    // document.getElementById("homeComponent").onload = onHomeLoad();
-    // function onHomeLoad() {
-    
-
     this._TeamService.teamCurrentObserver.subscribe(
       (response) => { 
         this.currentTeam = response;
