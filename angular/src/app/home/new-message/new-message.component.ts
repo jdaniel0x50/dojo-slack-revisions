@@ -34,12 +34,16 @@ export class NewMessageComponent implements OnInit {
   }
 
   onSubmit() {
+    let emitted: Boolean = false;
     this.msg._channel = this.channelId;
     console.log("Submitting message:");
     console.log(this.msg);
     this._msgService.createMsg(this.msg).then(
       (result) => {
-        this.socket.emit('create_message', result);
+        if (!emitted) {
+          this.socket.emit('create_message', result);
+          emitted = true;
+        }
     }, (err) => console.log(err) );
     this.msg = new Message();
   }
