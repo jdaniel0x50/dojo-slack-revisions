@@ -17,10 +17,13 @@ export class HomeComponent implements OnInit {
   constructor(private _TeamService: TeamService, private _ChannelService: ChannelService) { }
 
   ngOnInit() {
+<<<<<<< HEAD
     // document.getElementById("homeComponent").onload = onHomeLoad();
     // function onHomeLoad() {
     
 
+=======
+>>>>>>> ab2458a25ab733ec04270ddae956ad16172fb070
     this._TeamService.teamCurrentObserver.subscribe(
       (response) => { 
         this.currentTeam = response;

@@ -46,12 +46,14 @@ module.exports = {
             } else {
                 console.log('===SUCCESSFULLY SAVED USER===')
                 console.log(user)
-                req.session.userId = user._id
+                req.session.userId = newUser._id
                 let response = {
                     _id: newUser._id,
                     first_name: newUser.first_name,
                     last_name: newUser.last_name,
-                    email: newUser.email
+                    email: newUser.email,
+                    username: queryResponse.username,
+                    profile_picture: queryResponse.profile_picture,
                 }
                 return res.json(response)
             }
@@ -74,6 +76,8 @@ module.exports = {
                         first_name: queryResponse.first_name,
                         last_name: queryResponse.last_name,
                         email: queryResponse.email,
+                        username: queryResponse.username,
+                        profile_picture: queryResponse.profile_picture,
                         loggedIn: true
                     }
                     req.session.userId = queryResponse._id
