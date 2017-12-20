@@ -69,16 +69,17 @@ module.exports = {
     },
     getUserTeams: function(req, res) {
         console.log("===INSIDE getUserTeams TEAM CONTROLLER===")
-        User.findOne({_id: req.session.userId}, 
-            function(err, userResponse){
-                if(err){ 
-                    return res.json({Error: "Could not find User Session"})
-                }
-                else {
-                    console.log("Getting user's teams", userResponse)
-                    return res.json(userResponse.teams);
-                }
-            });
+        User.findOne({_id: req.session.userId})
+        .populate('teams')
+        .exec(function(err, userResponse){
+            if(err){ 
+                return res.json({Error: "Could not find User Session"})
+            }
+            else {
+                console.log("Getting user's teams", userResponse)
+                return res.json(userResponse.teams);
+            }
+        }); 
     },
     getTeam: function(req, res) {
         console.log('===INSIDE GETTEAM===')
@@ -155,7 +156,7 @@ module.exports = {
                 item.remove();
             }
         })
-    },
+    }
     
 
 }

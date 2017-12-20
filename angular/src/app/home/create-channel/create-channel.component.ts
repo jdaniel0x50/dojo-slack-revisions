@@ -23,6 +23,6 @@ export class CreateChannelComponent implements OnInit {
   onSubmit() {
     this.channel._team = this.teamId;
     this._channelService.createChannel(this.channel);
-    this._router.navigateByUrl("/");
+    this._router.navigateByUrl("/messages");
   }
 }

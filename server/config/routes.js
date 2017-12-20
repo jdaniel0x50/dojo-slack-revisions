@@ -43,7 +43,8 @@ module.exports = function(app){
     });
     app.get('/api/team/:id/destroy', function (req, res){
         TeamController.destroyTeam(req, res);
-    })
+    });
+    
 
     //Channel Routes
     app.post('/api/channel/create', function(req, res){
@@ -60,7 +61,10 @@ module.exports = function(app){
     });
     app.get('/api/channel/:id/destroy', function (req, res){
         ChannelController.destroyChannel(req, res);
-    })
+    });
+    app.get('/api/team/:id/channels', function (req, res){
+        ChannelController.getChannelsByTeam(req, res);
+    });
 
     // Message Routes
     app.post('/api/message/create', function (req, res) {
