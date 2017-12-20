@@ -8,7 +8,7 @@
     <div class="row">
       <h4>Current Team</h4>
       <p>{{currentTeam.name}}</p>
-      <a (click)='profileClicked()' [routerLink]="['profile']">User name</a>
+      <a (click)='profileClicked()' [routerLink]="['profile']">{{currentUser.username}}</a>
     </div>
     <div class="row channel">
       <h5>Channels</h5>

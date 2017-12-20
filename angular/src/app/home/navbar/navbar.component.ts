@@ -3,6 +3,7 @@ import { ChannelService } from '../../services/channel.service';
 import { TeamService } from '../../services/team.service';
 import { Channel } from '../../models'
 import { Team } from '../../models'
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,14 +15,17 @@ export class NavbarComponent implements OnInit {
   @Input() channels: Channel[]
   @Input() teams: Team[]
   currentTeam = new Team();
+  currentUser;
 
-  constructor(private _ChannelSerivce: ChannelService, private _TeamService: TeamService, private _ChannelService: ChannelService) { }
+  constructor(private _ChannelSerivce: ChannelService, private _TeamService: TeamService, private _ChannelService: ChannelService,
+  private _UserService: UserService) { }
 
   ngOnInit() {
     console.log(this.channels)
     this._TeamService.teamCurrentObserver.subscribe(
       (res) => this.currentTeam = res
     )
+    this.currentUser = this._UserService.returnSession()
   }
 
   profileClicked(){
