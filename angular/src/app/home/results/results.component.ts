@@ -11,9 +11,57 @@ export class ResultsComponent implements OnInit {
   constructor(private _SearchResultsService: SearchResultsService) { }
 
   ngOnInit() {
-    // this._SearchResultsService.searchResults.subscribe(
-    //   (searchResults)=>{this.currentResults = searchResults}
-    // )
+    this._SearchResultsService.searchResults.subscribe(
+      (searchResults)=>{this.currentResults = searchResults}
+    )
+    console.log('about to hit filter results')
+    console.log('currenResults:', this.currentResults)
+    console.log('First user.zone.length:', this.currentResults.user.__zone_symbol__value)
+    this.filterResults();
   }
   currentResults;
+  displayedResults = {
+    teamFlag: false,
+    teamArr: [],
+    channelFlag: false,
+    channelArr: [],
+    messageFlag: false,
+    messageArr: [],
+    userFlag: false,
+    userArr: [],
+  }
+
+  filterResults(){
+    if(this.currentResults.team.length > 0){
+      if (this.currentResults.team.__zone_symbol__value.length > 0){
+        this.displayedResults.teamFlag = true;
+        this.displayedResults.teamArr = this.currentResults.team.__zone_symbol__value
+      }
+    }
+    if (this.currentResults.channel.length > 0) {
+      if (this.currentResults.channel.__zone_symbol__value.length > 0) {
+        this.displayedResults.channelFlag = true;
+        this.displayedResults.channelArr = this.currentResults.channel.__zone_symbol__value
+      }
+    } 
+    if (this.currentResults.message.length > 0) {
+      if (this.currentResults.message.__zone_symbol__value.length > 0) {
+        this.displayedResults.messageFlag = true;
+        this.displayedResults.messageArr = this.currentResults.message.__zone_symbol__value
+      }
+    } 
+    // console.log('user.length:', this.currentResults.user.length)
+    // if (this.currentResults.user.length > 0) {
+    //   console.log('user.zone.length:', this.currentResults.user.__zone_symbol__value.length)
+    //   if (this.currentResults.user.__zone_symbol__value.length > 0) {
+    //     this.displayedResults.userFlag = true;
+    //     this.displayedResults.userArr = this.currentResults.user.__zone_symbol__value
+    //   }
+    // }
+    console.log('Second user.zone.length:', this.currentResults.user.__zone_symbol__value)
+    if (this.currentResults.user.__zone_symbol__value.length >= 0) {
+      this.displayedResults.userFlag = true;
+      this.displayedResults.userArr = this.currentResults.user.__zone_symbol__value
+    }
+  }
 }

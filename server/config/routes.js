@@ -47,7 +47,7 @@ module.exports = function(app){
     
 
     //Channel Routes
-    app.post('/api/channel/create', function(req, res){
+    app.post('/api/channel/:id/create', function(req, res){
         ChannelController.create(req, res);
     });
     app.get('/api/channel/:id', function(req, res){

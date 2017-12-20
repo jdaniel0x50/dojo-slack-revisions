@@ -20,8 +20,8 @@ export class ChannelService {
     console.log("Active Channel:", this.channelCurrentObserver)
   }
 
-  createChannel(channel: Channel) {
-    this._http.post(_dbUrl + "create", channel)
+  createChannel(channel: Channel, id) {
+    this._http.post(_dbUrl + "" + id + "/create", channel)
       .subscribe(
         response => {
           this.updateCurrentChannelObserver(response.json());

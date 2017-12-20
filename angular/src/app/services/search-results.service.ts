@@ -10,6 +10,7 @@ export class SearchResultsService {
 
   updateSearchResults(newResults){
     this.searchResults.next(newResults);
-    console.log('Search Results:', this.searchResults)
+    console.log('Search Results:', newResults)
+    console.log('searchResult observable:', this.searchResults)
   }
 }
