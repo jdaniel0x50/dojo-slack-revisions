@@ -4,8 +4,9 @@ form {
 input {
     display: inline-block;
 }
-textarea {
+#message_input {
     flex: 1;
+    min-height: 3.75em;
 }
 .input-group {
     flex: 1;
