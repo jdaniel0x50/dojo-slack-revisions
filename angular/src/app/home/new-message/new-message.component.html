@@ -2,6 +2,8 @@
   <div class="input-group">
     <div class="input-group-addon">+</div>
     <textarea type="text" class="form-control" placeholder="Message"
+      ng-textarea-enter="textareaAction()"
+      id="message_input"
       tabindex="1"
       name="content"
       minlength="2"
@@ -22,3 +24,7 @@
     <small class="col-md-12" *ngIf="content.errors?.maxlength && content.touched">Content may have no more than 500 characters.</small>
   </div>
 </form>
+
+<script>
+
+</script>
