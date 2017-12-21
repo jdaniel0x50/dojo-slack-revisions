@@ -75,5 +75,10 @@ export class TeamService {
       }
     )
   }
+  searchForTeams(Input){
+    return this._http.get(`/api/team/search/q/${Input}`)
+    .map(response => response.json())
+    .toPromise()
+  }
 
 }

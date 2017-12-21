@@ -44,6 +44,9 @@ module.exports = function(app){
     app.get('/api/team/:id/destroy', function (req, res){
         TeamController.destroyTeam(req, res);
     });
+    app.get('/api/team/search/q/:search', function (req, res) {
+        TeamController.getBySearchContent(req, res);
+    });
     
 
     //Channel Routes
@@ -64,6 +67,9 @@ module.exports = function(app){
     });
     app.get('/api/team/:id/channels', function (req, res){
         ChannelController.getChannelsByTeam(req, res);
+    });
+    app.get('/api/channel/search/q/:search', function (req, res) {
+        ChannelController.getBySearchContent(req, res);
     });
 
     // Message Routes

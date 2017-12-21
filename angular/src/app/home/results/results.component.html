@@ -1,12 +1,32 @@
 <div>
-  {{currentResults | json}}
-  <br>
-  ======
-  <br>
-  {{currentResults.user.legnth | json}}
-  {{currentResults.user | json}}
-  <br>
-  ======
-  <br>
-  {{displayedResults | json}}
+  <h3>Search Results</h3>
+  <div class="row" *ngIf="displayedResults.userFlag">
+    <h4>Users:</h4>
+    <div *ngFor="let item of displayedResults.userArr">
+      <p><span>Name:</span> {{item.first_name}} {{item.last_name}}</p>
+      <p><span>Username:</span> {{item.username}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="!displayedResults.userFlag">
+    <h4>Users: None</h4>
+  </div>
+  <div class="row" *ngIf="displayedResults.teamFlag">
+    <h4>Teams:</h4>
+    <div *ngFor="let item of displayedResults.teamArr">
+      <p><span>Name:</span> {{item.name}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="!displayedResults.teamFlag">
+    <h4>Teams: None</h4>
+  </div>
+  <div class="row" *ngIf="displayedResults.channelFlag">
+    <h4>Channels:</h4>
+    <div *ngFor="let item of displayedResults.channelArr">
+      <p><span>Team Name:</span> {{item._team.name}}</p>
+      <p><span>Name:</span> {{item.name}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="!displayedResults.channelFlag">
+    <h4>Channels: None</h4>
+  </div>
 </div>
