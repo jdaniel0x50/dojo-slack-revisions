@@ -1,0 +1,9 @@
+h3{
+    border-bottom: 2px black solid;
+}
+h4{
+    border-bottom: 1px lightgrey solid;
+}
+span{
+    font-weight: bold;
+}

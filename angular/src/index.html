@@ -16,13 +16,9 @@
   <app-root></app-root>
   <script>
     $(document).ready(function () {
-      console.log('jquery works')
-      $("#team").hover(function () {
-        console.log('hovering over')
-        $(this).css('background-color', 'yellow');
-      }, function () {
-        $(this).css("background-color", "lightgray")
-      });
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     });
   </script>
 </body>

@@ -20,3 +20,15 @@ h1,h2,h3,h4,h5,p{
     text-orientation: upright;
     margin: 0;
 }
+.btn1, .btn2{
+    border-radius: 15px;
+    border: 1px black solid;
+    color: black;
+    font-weight: bold;
+}
+.btn1{
+    background-color: lightgray
+}
+.btn2{
+    background-color: #4d394b
+}

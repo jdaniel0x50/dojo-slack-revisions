@@ -38,3 +38,10 @@
     position: absolute;
     bottom: 0px;
 }
+.sidebar{
+    border-left: 0.5px lightgray solid;
+}
+button{
+    border-radius: 15px;
+    background-color: white;
+}

@@ -156,6 +156,20 @@ module.exports = {
                 item.remove();
             }
         })
+    },
+    getBySearchContent: function(req, res){
+        console.log('req.params:', req.params)
+        Team.find({name:{$regex: req.params.search, $options: 'i' }}, function(error, response){
+            if(error){
+                console.log('Error searching for team')
+                console.log(error)
+                return res.json(error)
+            } else {
+                console.log('successfully found team')
+                console.log('TEAM(S) FOUND:', response)
+                return res.json(response)
+            }
+        });
     }
     
 

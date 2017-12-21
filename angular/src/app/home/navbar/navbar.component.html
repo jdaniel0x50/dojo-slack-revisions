@@ -1,8 +1,10 @@
 <div>
   <div class="col-sm-2 grey" id="team">
-    <h4>Teams</h4>
+    <div class="row">
+      <h4>Teams</h4>
+      <button [routerLink]="['/join']" class="btn1">+</button>
+    </div>
     <p *ngFor="let team of teams"><a (click)="setTeam(team)">@ {{team.name}}</a></p>
-    <button [routerLink]="['/join']">+</button>
   </div>
   <div class="col-sm-9 navside" id="channel">
     <div class="row">
@@ -12,8 +14,8 @@
     </div>
     <div class="row channel">
       <h5>Channels</h5>
-      <p *ngFor="let channel of channels"><a (click)="setChannel(channel)"># {{channel.name}}</a></p>
-      <button [routerLink]="['/newChannel']">+</button>
+      <button [routerLink]="['/newChannel']" class="btn2">+</button>
     </div>
+    <p *ngFor="let channel of channels"><a (click)="setChannel(channel)"># {{channel.name}}</a></p>
   </div>
 </div>
