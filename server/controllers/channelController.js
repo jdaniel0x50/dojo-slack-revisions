@@ -96,5 +96,20 @@ module.exports = {
                 return res.json(channels)
             }
         })
+    },
+    getBySearchContent: function(req, res){
+        Channel.find({name:{$regex: req.params.search, $options: 'i' }})
+        .populate('_team', "name")
+        .exec(function(error, response){
+            if(error){
+                console.log('Error searching for channel')
+                console.log(error)
+                return res.json(error)
+            } else {
+                console.log('successfully found channel')
+                console.log('CHANNEL(S) FOUND:', response)
+                return res.json(response)
+            }
+        });
     }
 }

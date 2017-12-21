@@ -11,63 +11,43 @@ export class ResultsComponent implements OnInit {
   constructor(private _SearchResultsService: SearchResultsService) { }
 
   ngOnInit() {
-    this._SearchResultsService.searchResults.subscribe(
-      (searchResults)=>{
-        this.currentResults = searchResults;
-        console.log('about to hit filter results')
-        this.filterResults(searchResults);
+    this._SearchResultsService.userSearchResults.subscribe(
+      (userResults)=>{
+        if(userResults.length > 0){
+          this.displayedResults.userFlag = true
+          this.displayedResults.userArr = userResults
+        } else {
+          this.displayedResults.userFlag = false
+        }
+      }
+    )
+    this._SearchResultsService.teamSearchResults.subscribe(
+      (teamResults)=>{
+        if(teamResults.length > 0){
+          this.displayedResults.teamFlag = true
+          this.displayedResults.teamArr = teamResults
+        } else {
+          this.displayedResults.teamFlag = false
+        }
+      }
+    )
+    this._SearchResultsService.channelSearchResults.subscribe(
+      (channelResults) => {
+        if (channelResults.length > 0) {
+          this.displayedResults.channelFlag = true
+          this.displayedResults.channelArr = channelResults
+        } else {
+          this.displayedResults.channelFlag = false
+        }
       }
     )
   }
-  currentResults;
   displayedResults = {
     teamFlag: false,
     teamArr: [],
     channelFlag: false,
     channelArr: [],
-    messageFlag: false,
-    messageArr: [],
     userFlag: false,
     userArr: [],
-  }
-
-  filterResults(searchResults){
-    // if(this.currentResults.team.length > 0){
-    //   if (this.currentResults.team.__zone_symbol__value.length > 0){
-    //     this.displayedResults.teamFlag = true;
-    //     this.displayedResults.teamArr = this.currentResults.team.__zone_symbol__value
-    //   }
-    // }
-    // if (this.currentResults.channel.length > 0) {
-    //   if (this.currentResults.channel.__zone_symbol__value.length > 0) {
-    //     this.displayedResults.channelFlag = true;
-    //     this.displayedResults.channelArr = this.currentResults.channel.__zone_symbol__value
-    //   }
-    // } 
-    // if (this.currentResults.message.length > 0) {
-    //   if (this.currentResults.message.__zone_symbol__value.length > 0) {
-    //     this.displayedResults.messageFlag = true;
-    //     this.displayedResults.messageArr = this.currentResults.message.__zone_symbol__value
-    //   }
-    // } 
-    // console.log('user.length:', this.currentResults.user.length)
-    // if (this.currentResults.user.length > 0) {
-    //   console.log('user.zone.length:', this.currentResults.user.__zone_symbol__value.length)
-    //   if (this.currentResults.user.__zone_symbol__value.length > 0) {
-    //     this.displayedResults.userFlag = true;
-    //     this.displayedResults.userArr = this.currentResults.user.__zone_symbol__value
-    //   }
-    // }
-    let x = searchResults.user
-    console.log('x:',x)
-    console.log('x len:', x.length)
-
-    console.log('user.length:', searchResults.user.length)
-    console.log('user:', searchResults['user'])
-    console.log('currentrsults:', searchResults)
-    if (searchResults.user.length > 0) {
-      this.displayedResults.userFlag = true;
-      this.displayedResults.userArr = searchResults.user
-    }
   }
 }

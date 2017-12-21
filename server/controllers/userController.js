@@ -30,7 +30,7 @@ module.exports = {
             email: req.body.email,
             password: req.body.password
         });
-        
+
         // assign random profile img by default
         let filesArr = [];
         getDefaultImgFiles(filesArr);
@@ -70,7 +70,7 @@ module.exports = {
             } else {
                 console.log('===COMPARING PASSWORD===')
                 console.log('req.body.password:', req.body.password)
-                if(bcrypt.compareSync(req.body.password, queryResponse.password)){
+                if (bcrypt.compareSync(req.body.password, queryResponse.password)) {
                     let response = {
                         _id: queryResponse._id,
                         first_name: queryResponse.first_name,
@@ -94,8 +94,12 @@ module.exports = {
         console.log('===INSIDE USER FIND USER CONTROLLER===')
         console.log('POST DATA:', req.body)
         if (req.session.userId) {
-            User.find({$or: [{first_name: req.body.input}, {last_name: req.body.input}]}, function (errors, queryResponse) {
-                if (errors || queryResponse == null) {
+            User.find({ $or: [
+                {first_name: { $regex: req.body.input, $options: 'i'}}, 
+                {last_name: { $regex: req.body.input, $options: 'i'}},
+                {username: { $regex: req.body.input, $options: 'i'}}
+            ]}, function (errors, queryResponse) {
+                if (errors) {
                     console.log('===ERROR FINDING USER===')
                     return res.json({ Error: 'Error finding user' })
                 } else {

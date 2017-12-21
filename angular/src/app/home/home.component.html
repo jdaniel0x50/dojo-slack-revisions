@@ -16,7 +16,7 @@
               <app-new-message></app-new-message>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3" *ngIf="isVisible">
+        <div class="col-md-3 col-sm-3 sidebar" *ngIf="isVisible">
           <div class="row">
             <button (click)='visibleClicked()' [routerLink]="['/messages']"class="pull-right">X</button>
           </div>

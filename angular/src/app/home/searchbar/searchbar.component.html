@@ -2,8 +2,9 @@
   <div>
     <form (submit)='onSubmit(); searchForm.reset()' #searchForm='ngForm'>
       <div class="input-group">
-        <input name = "searchInput" type = "text" placeholder="Search.."  [(ngModel)] = 'userInput' >
-        <input type="submit">
+        <input name = "searchInput" type = "text" placeholder="Search.."  [(ngModel)] = 'userInput' #searchErr='ngModel' 
+        required minlength="1" >
+        <input type="submit" [disabled]='searchForm.invalid'>
       </div>
     </form>
   </div>

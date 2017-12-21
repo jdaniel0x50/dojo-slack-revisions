@@ -45,5 +45,10 @@ export class ChannelService {
         }
       );
   }
+  searchForChannels(Input) {
+    return this._http.get(`/api/channel/search/q/${Input}`)
+      .map(response => response.json())
+      .toPromise()
+  }
 
 }
