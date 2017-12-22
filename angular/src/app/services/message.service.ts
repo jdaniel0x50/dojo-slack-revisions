@@ -12,7 +12,7 @@ let _dbUrl: String = "/api/message/";
 @Injectable()
 export class MessageService {
   socket = io("http://localhost:4000");
-  channelId: String = "";
+  // channelId: String = "";
   messagesObserver: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
   constructor(
@@ -20,10 +20,10 @@ export class MessageService {
     private _channelService: ChannelService
   ) {
     // subscribe to the channel service to maintain the current channel
-    this._channelService.channelCurrentObserver.subscribe(
-      (currChannel) => {
-        this.channelId = currChannel._id;
-    });
+    // this._channelService.channelCurrentObserver.subscribe(
+    //   (currChannel) => {
+    //     this.channelId = currChannel._id;
+    // });
   }
 
   updateMsgsObserver(newData: any): void {
@@ -37,7 +37,10 @@ export class MessageService {
         console.log("Received Emit new message from the server");
         console.log("Msg Received:", data);
         // check if the new message belongs to the user's channel
-        if (data.message._channel == this.channelId) {
+        let currChannel = this._channelService.getCurrentChannel();
+        let channelId = currChannel._id;
+        // let channelId = "";
+        if (data.message._channel == channelId) {
           // push message to an array of messages
           let messages = this.messagesObserver.getValue();
           messages.push(data.message);
@@ -66,6 +69,7 @@ export class MessageService {
         .subscribe(response => {
           console.log("Completed message create and received response");
           console.log(response);
+          this.emitNewMessage(response);
           this.getChannelMsgs(msg._channel);
           resolve(response);
         },

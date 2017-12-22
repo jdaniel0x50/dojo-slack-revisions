@@ -1,12 +1,14 @@
 <div>
-  <div class="col-sm-2 grey" id="team">
+  <div class="col-sm-2 grey navVertical" id="team">
     <div class="row">
       <h4>Teams</h4>
       <button [routerLink]="['/join']" class="btn1">+</button>
     </div>
-    <p *ngFor="let team of teams"><a (click)="setTeam(team)">@ {{team.name}}</a></p>
+    <p class="eachTeam" *ngFor="let team of teams">
+      <a (click)="setTeam(team)">@ {{team.name}}</a>
+    </p>
   </div>
-  <div class="col-sm-9 navside" id="channel">
+  <div class="col-sm-9 navside navVertical" id="channel">
     <div class="row">
       <h4>Current Team</h4>
       <p>{{currentTeam.name}}</p>

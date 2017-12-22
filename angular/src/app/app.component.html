@@ -7,6 +7,7 @@
         <a [routerLink]="['messages', 'comment']">Comment</a>
         <a [routerLink]="['newChannel']">Create Channel</a>
         <a [routerLink]="['join']">Join Team/Create Team</a>
+        <a (click)="initTeams()">Init Teams</a>
 
     </div>
     <router-outlet></router-outlet>

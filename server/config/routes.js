@@ -24,6 +24,9 @@ module.exports = function(app){
     app.get('/LogoutUser', function(req, res){
         UserController.logout(req, res);
     });
+    app.get('/api/user/initmsgservice', function(req, res) {
+        UserController.initMsgService(req, res);
+    });
 
     // Team Routes
     app.post('/api/team/create', function(req, res){
@@ -35,9 +38,6 @@ module.exports = function(app){
     app.get('/api/user/teams', function(req, res){
         TeamController.getUserTeams(req, res);
     });
-    app.get('/api/team/:id', function (req, res){
-        TeamController.getTeam(req, res);
-    });
     app.post('/api/team/join', function  (req, res){
         TeamController.joinTeam(req, res);
     });
@@ -47,14 +47,14 @@ module.exports = function(app){
     app.get('/api/team/search/q/:search', function (req, res) {
         TeamController.getBySearchContent(req, res);
     });
+    app.get('/api/team/:id', function (req, res) {
+        TeamController.getTeam(req, res);
+    });
     
 
     //Channel Routes
     app.post('/api/channel/:id/create', function(req, res){
         ChannelController.create(req, res);
-    });
-    app.get('/api/channel/:id', function(req, res){
-        ChannelController.getChannel(req, res);
     });
     app.post('/api/channel/updatepurpose', function (req, res){
         ChannelController.updatePurpose(req, res);
@@ -70,6 +70,9 @@ module.exports = function(app){
     });
     app.get('/api/channel/search/q/:search', function (req, res) {
         ChannelController.getBySearchContent(req, res);
+    });
+    app.get('/api/channel/:id', function (req, res) {
+        ChannelController.getChannel(req, res);
     });
 
     // Message Routes

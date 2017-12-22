@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ViewChild, ElementRef, OnInit, Input } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild, ElementRef, OnInit, Input, OnDestroy} from '@angular/core';
 import { Message } from '../../models';
 import { MessageService } from '../../services/message.service';
 import { ChannelService } from '../../services/channel.service';
@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./messageboard.component.css']
 })
 export class MessageboardComponent implements OnInit {
-  // @Input() channelId: String;
+  @Input() messages: Array<Message> = [];
   @ViewChild('all_messages') el_messages: ElementRef;
-  messages: Array<Message> = [];
+  // messages: Array<Message> = [];
   channelId: String = "";
   connection;
 
@@ -29,20 +29,24 @@ export class MessageboardComponent implements OnInit {
   ngOnInit() {
     // subscribe to the current channel observable
     // and get channel's messages
-    this._channelService.channelCurrentObserver.subscribe(
-      (currChannel) => {
-        this.channelId = currChannel._id;
-        this._msgService.getChannelMsgs(this.channelId);
-      });
+    // this._channelService.channelCurrentObserver.subscribe(
+    //   (currChannel) => {
+    //     this.channelId = currChannel._id;
+    //     this._msgService.getChannelMsgs(this.channelId);
+    //   });
 
     // subscribe to the messages observable
-    this._msgService.messagesObserver.subscribe(
-      (msgData) => {
-        this.messages = msgData;
-    });
+    // this._msgService.messagesObserver.subscribe(
+    //   (msgData) => {
+    //     this.messages = msgData;
+    // });
 
     // subscribe to the socket connection to receive new messages from server broadcast
     this._msgService.msgSocketObserver().subscribe();
+  }
+  ngOnDestroy() {
+    // this._msgService.messagesObserver.unsubscribe();
+    // this._msgService.msgSocketObserver();
   }
 
   ngAfterViewChecked() {

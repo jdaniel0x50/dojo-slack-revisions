@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Team = mongoose.model('Team');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const path = require('path');
@@ -164,6 +165,64 @@ module.exports = {
         } else {
             console.log('===USER NOT IN SESSION===')
             return res.json({ Error: 'User not in session' })
+        }
+    },
+
+    initMsgService: function (req, res) {
+        console.log('===INSIDE USER INIT MSG SERVICE CONTROLLER===')
+        // initialize message service 
+        // with boolean about whether user has a team
+        // and, if so, the current team and channel for the view
+        if (req.session.userId) {
+            User.findById(req.session.userId)
+                .populate({
+                    path: 'teams',
+                    populate: { path: 'channels' }
+                })
+                .exec(function (err, user) {
+                    if (err) {
+                        console.log("There was an error finding the user");
+                        console.log(err);
+                        return res.json(err);
+                    }
+                    else {
+                        // construct object to return with 3 keys:
+                        // boolTeams, teams, and channels
+
+                        Team.findById(user.teams[0]._id)
+                            .populate('channels')
+                            .exec(function (errTeam, firstTeam) {
+                                let isTeams = false;
+                                let teams = null;
+                                let channels = null;
+                                let team = null;
+                                let channel = null;
+                                if (user.teams.length > 0) {
+                                    // user has teams
+                                    isTeams = true;
+                                    teams = user.teams;
+                                    channels = firstTeam.channels;
+                                    team = user.teams[0];
+                                    channel = user.teams[0].channels[0];
+                                }
+                                let newObj = {
+                                    hasTeams: isTeams,
+                                    teams: teams,
+                                    channels: channels,
+                                    team: team,
+                                    channel: channel
+                                };
+
+
+                            console.log("User Controller -- have user");
+                            console.log("CHANNELS -----")
+                            console.log(firstTeam.channels)
+
+                            return res.json(newObj);
+                        })
+                    }
+                }
+            );
         }
     }
 }

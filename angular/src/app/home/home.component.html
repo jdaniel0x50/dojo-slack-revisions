@@ -1,30 +1,44 @@
 <div class="container-fluid" id="homeComponent">
   <div class="row">
     <div class="col-sm-2 navbar">
-      <app-navbar (ProfileEmitter)='visibleClicked()' [channels]="channels" [teams]="teams"></app-navbar>
+      <app-navbar (ProfileEmitter)='visibleClicked()' (changeTeam)='changedTeam($event)' (changeChannel)='changedChannel($event)' [currentUser]="currentUser" [currentTeam]="currentTeam" [channels]="channels" [teams]="teams"></app-navbar>
     </div>
     <div class="col-md-10 col-sm-10 mainComponent">
-      <div class="row searchHeight">
-        <app-searchbar (SearchResultEmitter)='searchSubmitted()'></app-searchbar>
-      </div>
-      <div class="row viewHeight">
-        <div [ngClass]="{'col-md-9 col-sm-9': isVisible}" [ngClass]="{'col-md-12 col-sm-12': !isVisible}">
-          <div class="row msgsContainer">
-            <app-messageboard></app-messageboard>
-          </div>
-          <div class="row msg-bottom">
-              <app-new-message></app-new-message>
-          </div>
+      <div class="row">
+        <div class="searchHeight">
+          <app-searchbar (SearchResultEmitter)='searchSubmitted()' [currentUser]="currentUser"></app-searchbar>
         </div>
-        <div class="col-md-3 col-sm-3 sidebar" *ngIf="isVisible">
-          <div class="row">
-            <button (click)='visibleClicked()' [routerLink]="['/messages']"class="pull-right">X</button>
+      </div>
+      <div class="row">
+        <div class="viewHeight">
+          <div [ngClass]="{'col-md-9 col-sm-9': isVisible}" [ngClass]="{'col-md-12 col-sm-12': !isVisible}">
+            <div class="row msgsContainer">
+              <app-messageboard [messages]="messages"></app-messageboard>
+            </div>
+            <div class="row msg-bottom">
+              <app-new-message [currentChannel]="currentChannel"></app-new-message>
+            </div>
           </div>
-          <div class="row">
-            <router-outlet></router-outlet>
+          <div class="col-md-3 col-sm-3 sidebar" *ngIf="isVisible">
+            <div class="row">
+              <button (click)='visibleClicked()' [routerLink]="['/messages']" class="pull-right">X</button>
+            </div>
+            <div class="row">
+              <router-outlet></router-outlet>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<hr>
+<div class="row">
+
+{{channels | json}}
+{{currentTeam | json}}
+{{currentChannel | json}}
+{{currentUser | json}}
+
+</div>
+
