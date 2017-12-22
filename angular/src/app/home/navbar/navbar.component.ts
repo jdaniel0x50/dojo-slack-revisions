@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { ChannelService } from '../../services/channel.service';
 import { TeamService } from '../../services/team.service';
 import { MessageService } from '../../services/message.service';
@@ -28,13 +28,26 @@ export class NavbarComponent implements OnInit {
     private _MessageService: MessageService
   ) { }
 
+  teamName;
+
   ngOnInit() {
     // console.log(this.channels)
     // this._TeamService.teamCurrentObserver.subscribe(
     //   (res) => this.currentTeam = res
     // )
     // this.currentUser = this._UserService.returnSession()
+    this._TeamService.teamsObserver.subscribe(
+      (res) => { this.teams = res} 
+    )
+    this.teamName = this.currentTeam.name;
   }
+
+  ngOnChanges() {
+    console.log("Something changed")
+    console.log(this.currentTeam.name)
+    this.teamName = this._TeamService.getCurrentTeam();
+  }
+
 
   profileClicked(){
     this.ProfileEmitter.emit();

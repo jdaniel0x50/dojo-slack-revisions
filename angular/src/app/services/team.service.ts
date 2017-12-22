@@ -14,6 +14,7 @@ export class TeamService {
 
   // new
   currentTeam = null;
+  allTeams = [];
 
   constructor( 
     private _http: Http, 
@@ -31,6 +32,9 @@ export class TeamService {
   getCurrentTeam() {
     return this.currentTeam;
   }
+  getAllTeams() {
+    return 
+  }
   updateCurrentTeamObserver(newData: any): void {
     this.teamCurrentObserver.next(newData);
     // console.log("Active Team:", this.teamCurrentObserver.getValue());
@@ -40,6 +44,7 @@ export class TeamService {
     this._http.post(_dbUrl + "create", team)
       .subscribe(
         response => {
+          console.log("RESPONSE WE ARE LOOKING FOR", response.json())
           this.setCurrentTeam(response.json());
           let teams = this.teamsObserver.getValue();
           teams.push(response.json());

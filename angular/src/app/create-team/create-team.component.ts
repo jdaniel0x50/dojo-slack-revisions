@@ -20,6 +20,7 @@ export class CreateTeamComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("Created Team", this.team)
     this._teamService.createTeam(this.team);
     this._router.navigateByUrl("/messages");
   }

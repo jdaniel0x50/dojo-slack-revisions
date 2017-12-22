@@ -47,13 +47,14 @@ module.exports = {
                         if (err) {
                             return res.json({Error: "General Channel could not be created"})
                         } else {
-                            Team.update({_id: newTeam._id}, 
+                            Team.findOneAndUpdate({_id: newTeam._id}, 
                             {
                                 $addToSet: {
                                     users: req.session.userId, 
                                     channels: channel._id
                                 }
                             }, 
+                            {new: true}, 
                             function (teamErr, teamRes) {
                                 if(teamErr){
                                     return res.json({Error: 'User already on team'})

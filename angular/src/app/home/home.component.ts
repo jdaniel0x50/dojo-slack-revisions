@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _UserService: UserService,
     private _MessageService: MessageService,
     private _Router: Router,
-  ) { }
+  ) { 
+    this.currentTeam = this._TeamService.getCurrentTeam();
+  }
 
   ngOnInit() {
     // subscribe to lists of teams, channels, messages
@@ -141,5 +143,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   changedChannel() {
     this.currentChannel = this._ChannelService.getCurrentChannel();
+  }
+
+  getTeams() {
+    return this.teams
   }
 }
