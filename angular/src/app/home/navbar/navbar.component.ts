@@ -50,6 +50,7 @@ export class NavbarComponent implements OnInit {
   setTeam(data){
     console.log("Setting team as:", data);
     this._TeamService.setCurrentTeam(data);
+    this._MessageService.getChannelMsgs(data.channels[0]._id);
     this.changeTeam.emit(data);
   }
 }
