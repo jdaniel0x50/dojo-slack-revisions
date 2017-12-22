@@ -1,29 +1,60 @@
+.navVertical {
+    padding: 20px 5px;
+}
 .navside{
     padding-left: 20px;
     background-color: #4d394b;
-    height: 100vh;
+    height: 97vh;
 }
 h1,h2,h3,h4,h5,p{
     color: white
 }
+
+/* hover over the team navbar */
+#team:hover {
+    min-width: 200px;
+    width: 20vw;
+    z-index: 100;
+    padding: 25px;
+}
+#team:hover h4 {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    text-align: left;
+    padding-bottom: 25px;
+    display: inline;
+}
+#team:hover .eachTeam {
+    display: block;
+}
+#team:hover a {
+    color: white;
+}
+#team:hover + #channel {
+    display: none;
+}
+
 .channel h5, button{
     display: inline-block;
 }
 .grey{
-    height: 95vh;
-    background-color: lightgray;
-    padding: 0;
+    height: 97vh;
+    background-color: #352833;
 }
 .grey h4{
-    color: black;
     writing-mode: vertical-rl;
     text-orientation: upright;
+    text-align: center;
     margin: 0;
 }
+.eachTeam{
+    display: none;
+}
 .btn1, .btn2{
+    margin: 20px auto;
     border-radius: 15px;
-    border: 1px black solid;
-    color: black;
+    border: 1px white solid;
+    color: white;
     font-weight: bold;
 }
 .btn1{

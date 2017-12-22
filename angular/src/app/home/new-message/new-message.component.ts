@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
-import { Message } from '../../models';
+import { Message, Channel } from '../../models';
 import { MessageService } from '../../services/message.service';
 import { ChannelService } from '../../services/channel.service';
 import { Router } from '@angular/router';
-import * as enter from 'ng-textarea-enter';
+// import * as enter from 'ng-textarea-enter';
 import { window } from 'Rxjs/operator/window';
 
 @Component({
@@ -12,7 +12,7 @@ import { window } from 'Rxjs/operator/window';
   styleUrls: ['./new-message.component.css']
 })
 export class NewMessageComponent implements OnInit {
-  channelId: String = "";
+  @Input() currentChannel: Channel;
   msg: Message = new Message();
 
   // developmental variables
@@ -26,28 +26,22 @@ export class NewMessageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // subscribe to the current channel
-    this._channelService.channelCurrentObserver.subscribe(
-      (currChannel) => {
-        this.channelId = currChannel._id;
-      });
   }
 
   ngAfterViewInit() {
-    document.getElementById("#message_input").addEventListener("keydown", function() {
-      console.log("KEY WAS PRESSED");
+    // document.getElementById("#message_input").addEventListener("keydown", function() {
+    //   console.log("KEY WAS PRESSED");
 
-    })
+    // })
   }
 
   onSubmit() {
-    this.msg._channel = this.channelId;
+    this.msg._channel = this.currentChannel._id;
     console.log("Submitting message:");
     console.log(this.msg);
     this._msgService.createMsg(this.msg).then(
-      (result) => {
-        this._msgService.emitNewMessage(result);
-    }, (err) => console.log(err) );
+      (result) => console.log(result), 
+      (err) => console.log(err) );
     this.msg = new Message();
   }
 

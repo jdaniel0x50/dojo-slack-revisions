@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { User } from '../../models';
 import { TeamService } from '../../services/team.service';
 import { ChannelService } from '../../services/channel.service';
 import { UserService } from '../../services/user.service';
@@ -11,15 +12,23 @@ import { SearchResultsService } from '../../services/search-results.service';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.css']
 })
+
 export class SearchbarComponent implements OnInit {
   @Output() SearchResultEmitter = new EventEmitter();
-  constructor(private _TeamService: TeamService, private _ChannelService: ChannelService, private _UserService: UserService,
-  private _MessageService: MessageService, private _Router: Router, private _SearchResultsService: SearchResultsService) { }
+  @Input() currentUser = {};
+  userInput = ''
+
+  constructor(
+    private _TeamService: TeamService, 
+    private _ChannelService: ChannelService, 
+    private _UserService: UserService,
+    private _MessageService: MessageService, 
+    private _Router: Router, 
+    private _SearchResultsService: SearchResultsService
+  ) { }
 
   ngOnInit() {
   }
-
-  userInput =''
 
   onSubmit(){
     if(this.userInput[0]==='@'){
@@ -63,5 +72,9 @@ export class SearchbarComponent implements OnInit {
     }
     this.SearchResultEmitter.emit()
     this._Router.navigateByUrl('messages/searchResults')
+  }
+
+  onClickLogout() {
+    this._UserService.logoutUser();
   }
 }

@@ -17,7 +17,7 @@ import { LoginComponent } from './log-reg/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NewMessageComponent } from './home/new-message/new-message.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
-import { CreateChannelComponent } from './home/create-channel/create-channel.component';
+import { CreateChannelComponent } from './create-channel/create-channel.component';
 import { ResultsComponent } from './home/results/results.component';
 import { JoinComponent } from './join/join.component';
 
@@ -28,6 +28,7 @@ import { MessageService } from './services/message.service';
 import { CommentService } from './services/comment.service';
 import { TeamSearchComponent } from './join/team-search/team-search.component';
 import { SearchResultsService } from './services/search-results.service';
+import { SlackMainComponent } from './slack-main/slack-main.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SearchResultsService } from './services/search-results.service';
     CreateChannelComponent,
     JoinComponent,
     ResultsComponent,
-    TeamSearchComponent
+    TeamSearchComponent,
+    SlackMainComponent
   ],
   imports: [
     BrowserModule,
