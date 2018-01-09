@@ -51,6 +51,6 @@ export class CreateChannelComponent implements OnInit {
 
     // }
     // )
-    // this._router.navigateByUrl("/messages");
+    this._router.navigateByUrl("/messages");
   }
 }

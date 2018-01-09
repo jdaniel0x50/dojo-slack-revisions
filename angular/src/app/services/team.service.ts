@@ -32,9 +32,6 @@ export class TeamService {
   getCurrentTeam() {
     return this.currentTeam;
   }
-  getAllTeams() {
-    return 
-  }
   updateCurrentTeamObserver(newData: any): void {
     this.teamCurrentObserver.next(newData);
     // console.log("Active Team:", this.teamCurrentObserver.getValue());
@@ -49,6 +46,7 @@ export class TeamService {
           let teams = this.teamsObserver.getValue();
           teams.push(response.json());
           this.updateTeamsObserver(teams);
+          this.updateCurrentTeamObserver(response.json());
         },
         error => {
           console.log("There were errors in the team creation");
@@ -64,6 +62,10 @@ export class TeamService {
       response => {
         console.log("Join Team Success:", response.json())
         let x = response.json()
+        this.setCurrentTeam(response.json());
+        let teams = this.teamsObserver.getValue();
+        teams.push(response.json());
+        this.updateTeamsObserver(teams);
         this.updateCurrentTeamObserver(response.json());
         if(x.Error){
           this._router.navigateByUrl("/join");

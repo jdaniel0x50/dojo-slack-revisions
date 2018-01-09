@@ -5,19 +5,19 @@
       <button [routerLink]="['/join']" class="btn1">+</button>
     </div>
     <p class="eachTeam" *ngFor="let team of teams">
-      <a (click)="setTeam(team)">@ {{team.name}}</a>
+      <a class="nav-link" (click)="setTeam(team)">@ {{team.name}}</a>
     </p>
   </div>
   <div class="col-sm-9 navside navVertical" id="channel">
     <div class="row">
       <h4>Current Team</h4>
       <p>{{currentTeam.name}}</p>
-      <a (click)='profileClicked()' [routerLink]="['profile']">{{currentUser.username}}</a>
+      <a class="nav-link" (click)='profileClicked()' [routerLink]="['profile']">{{currentUser.username}}</a>
     </div>
     <div class="row channel">
       <h5>Channels</h5>
       <button [routerLink]="['/newChannel']" class="btn2">+</button>
     </div>
-    <p *ngFor="let channel of channels"><a (click)="setChannel(channel)"># {{channel.name}}</a></p>
+    <p *ngFor="let channel of channels"><a class="nav-link" (click)="setChannel(channel)"># {{channel.name}}</a></p>
   </div>
 </div>

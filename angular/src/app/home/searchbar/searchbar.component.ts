@@ -16,6 +16,7 @@ import { SearchResultsService } from '../../services/search-results.service';
 export class SearchbarComponent implements OnInit {
   @Output() SearchResultEmitter = new EventEmitter();
   @Input() currentUser = {};
+  @Input() currentChannel
   userInput = ''
 
   constructor(
@@ -75,6 +76,9 @@ export class SearchbarComponent implements OnInit {
   }
 
   onClickLogout() {
+    this._TeamService.updateTeamsObserver([]);
+    this._ChannelService.updateChannelsObserver([]);
+    this._MessageService.updateMsgsObserver([]);
     this._UserService.logoutUser();
   }
 }

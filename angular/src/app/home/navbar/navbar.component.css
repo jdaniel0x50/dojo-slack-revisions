@@ -4,16 +4,19 @@
 .navside{
     padding-left: 20px;
     background-color: #4d394b;
-    height: 97vh;
+    height: 100vh;
 }
-h1,h2,h3,h4,h5,p{
+h1,h2,h3,h4,h5,p,.nav-link{
     color: white
 }
-
+.nav-link{
+    opacity: 0.6;
+    cursor: pointer;
+}
 /* hover over the team navbar */
 #team:hover {
     min-width: 200px;
-    width: 20vw;
+    width: 15vw;
     z-index: 100;
     padding: 25px;
 }
@@ -28,7 +31,12 @@ h1,h2,h3,h4,h5,p{
     display: block;
 }
 #team:hover a {
-    color: white;
+    color: rgba(255,255,255, 1);
+    cursor: pointer;
+}
+.nav-link:hover{
+    opacity: 1;
+    text-decoration: none;
 }
 #team:hover + #channel {
     display: none;
@@ -38,7 +46,7 @@ h1,h2,h3,h4,h5,p{
     display: inline-block;
 }
 .grey{
-    height: 97vh;
+    height: 100vh;
     background-color: #352833;
 }
 .grey h4{

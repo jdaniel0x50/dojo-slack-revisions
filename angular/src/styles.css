@@ -54,7 +54,8 @@ input{
 .logregbox{
     border: 1px lightgrey solid;
     border-radius: 5px; 
-    padding: 5px
+    padding: 5px;
+    margin-top: 75px;
 }
 .focus{
     border-left: 5px solid #a94442;
